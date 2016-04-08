@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.raiss.deputadostalker" >
+    package="app.deputadostalker" >
 
     <application
         android:allowBackup="true"
@@ -9,12 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="deputadoStalker.usuario.gui.CadastroAct"
+            android:name="app.deputadostalker.usuario.gui.CadastroAct"
             android:label="@string/title_activity_cadastro"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name="deputadoStalker.usuario.gui.LoginAct"
+            android:name="app.deputadostalker.usuario.gui.LoginAct"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
