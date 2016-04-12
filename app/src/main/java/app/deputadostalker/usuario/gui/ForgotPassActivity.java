@@ -18,13 +18,14 @@ import app.deputadostalker.util.CheckNetwork;
 import app.deputadostalker.util.Constants;
 
 
-public class ForgotPassActivity extends Activity implements View.OnClickListener{
+public class ForgotPassActivity extends Activity{
+//implements View.OnClickListener{
     EditText edit_email;
     TextView txt_remembered;
     Button btn_recover;
     ProgressDialog ringProgressDialog;
     private ForgotPassTask mForgotTask = null;
-
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +52,19 @@ public class ForgotPassActivity extends Activity implements View.OnClickListener
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
+*/
+
+
+
+
+
     /**
      * Attempts to recover the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+
+    /*
     public void attemptRecover() {
         // Store values at the time of the login attempt.
         String email = edit_email.getText().toString();
@@ -101,6 +110,8 @@ public class ForgotPassActivity extends Activity implements View.OnClickListener
                 break;
         }
     }
+
+*/
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -150,4 +161,5 @@ public class ForgotPassActivity extends Activity implements View.OnClickListener
         startActivity(new Intent(ForgotPassActivity.this, LoginActivity.class));
         finish();
     }
+
 }

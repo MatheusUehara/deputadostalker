@@ -2,7 +2,7 @@
     package="app.deputadostalker">
 
 	<uses-permission android:name="android.permission.INTERNET" />
-	
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,52 +10,53 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name="app.deputadostalker.usuario.gui.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".util.SplashAct" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Facebook Config -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- Facebook Config END -->
+
+        <activity
+            android:name=".usuario.gui.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".usuario.gui.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".usuario.gui.ForgotPassActivity"
+            android:label="@string/title_activity_forgot"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+
     </application>
 
-    <activity
-        android:name=".usuario.gui.LoginActivity"
-        android:label="@string/app_name" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-    </activity>
-
-    <activity android:name=".util.SplashAct" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-
-    <!-- Facebook Config -->
-    <meta-data
-        android:name="com.facebook.sdk.ApplicationId"
-        android:value="@string/facebook_app_id" />
-
-    <activity
-        android:name="com.facebook.FacebookActivity"
-        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-        android:label="@string/app_name"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-    <!-- Facebook Config END -->
-
-    <activity
-        android:name=".usuario.gui.MainActivity"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar" >
-    </activity>
-    <activity
-        android:name=".usuario.gui.RegisterActivity"
-        android:label="@string/title_activity_register"
-        android:theme="@style/AppTheme.NoActionBar" >
-    </activity>
-    <activity
-        android:name=".usuario.gui.ForgotPassActivity"
-        android:label="@string/title_activity_forgot"
-        android:theme="@style/AppTheme.NoActionBar" >
-    </activity>
 
 </manifest>
 

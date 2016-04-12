@@ -16,12 +16,13 @@ import app.deputadostalker.usuario.service.UsuarioService;
 import app.deputadostalker.util.CheckNetwork;
 import app.deputadostalker.util.Constants;
 
-public class RegisterActivity extends Activity implements View.OnClickListener{
+public class RegisterActivity extends Activity{
+        //implements View.OnClickListener{
     EditText edit_nome, edit_email, edit_password;
     TextView txt_alreadyHave;
     Button btn_registrar;
     private CreateUserTask mCreateTask = null;
-
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
+
+    /*
     public void attemptCreate() {
         // Store values at the time of the login attempt.
         String name = edit_nome.getText().toString();
@@ -100,6 +103,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
         }
     }
 
+
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -112,7 +117,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                 break;
         }
     }
-
+*/
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.

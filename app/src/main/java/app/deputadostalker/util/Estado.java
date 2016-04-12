@@ -7,32 +7,32 @@ package app.deputadostalker.util;
 public enum Estado {
 	AC("Acre"),
 	AL("Alagoas"),
-	AP("Amapá"),
+	AP("Amap?"),
 	AM("Amazonas"),
 	BA("Bahia"),
-	CE("Ceará"),
+	CE("Cear?"),
 	DF("Distrito Federal"),
-	ES("Espírito Santo"),
-	GO("Goiás"),
-	MA("Maranhão"),
+	ES("Esp?rito Santo"),
+	GO("Goi?s"),
+	MA("Maranh?o"),
 	MT("Mato Grosso"),
 	MS("Mato Grosso do Sul"),
 	MG("Minas Gerais"),
-	PA("Pará"),
-	PB("Paraíba"),
-	PR("Paraná"),
+	PA("Par?"),
+	PB("Para?ba"),
+	PR("Paran?"),
 	PE("Pernambuco"),
-	PI("Piauí"),
+	PI("Piau?"),
 	RR("Roraima"),
-	RO("Rondônia"),
+	RO("Rond?nia"),
 	RJ("Rio de Janeiro"),
 	RN("Rio Grande do Norte"),
 	RS("Rio Grande do Sul"),
 	SC("Santa Catarina"),
-	SP("São Paulo"),
+	SP("S?o Paulo"),
 	SE("Sergipe"),
 	TO("Tocantins"),
-	NONE("Não Encontrado");
+	NONE("N?o Encontrado");
 
 
 	private String nomeEstado;
@@ -52,8 +52,8 @@ public enum Estado {
 	/**
 	 * A partir da sigla retorna o nome do estado.
 	 *
-	 * @param siglaEstado sigla do estado que será retornado o nome
-	 * @return            nome do estado cuja sigla é representado pela siglaEstado
+	 * @param siglaEstado sigla do estado que ser? retornado o nome
+	 * @return            nome do estado cuja sigla ? representado pela siglaEstado
 	 * @author            Matheus Uehara
 	 */
 	public static Estado getEstado(String siglaEstado){

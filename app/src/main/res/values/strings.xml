@@ -3,7 +3,13 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_cadastro">CadastroAct</string>
     <string name="title_activity_login">LoginAct</string>
-    <string name="facebook_app_id">123112412412</string>
-    <string name="title_activity_register">123112412412</string>
-    <string name="title_activity_forgot">123112412412</string>
+    <string name="facebook_app_id">205876109793796</string>
+    <string name="title_activity_register">Registrar</string>
+    <string name="title_activity_forgot">Esqueceu a senha</string>
+
+    <string name="navigation_drawer_open"></string>
+    <string name="navigation_drawer_close"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

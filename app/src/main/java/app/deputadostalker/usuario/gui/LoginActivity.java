@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         final ImageView image = (ImageView) findViewById(R.id.logo);
-        image.setImageResource(R.mipmap.ic_logo);
+        image.setImageResource(R.mipmap.ic_launcher);
 
         this.isFacebookKeyGenerated();
         initInstances();
@@ -119,12 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void connectionFailedApiClient(ConnectionResult connectionResult) {
-        Toast.makeText(LoginActivity.this, R.string.google_api_connection_fail + connectionResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this,"Falha na conexao com api" + connectionResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void loginFailed() {
-        Toast.makeText(LoginActivity.this, R.string.google_login_fail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Falha no login", Toast.LENGTH_SHORT).show();
     }
 
     public void isFacebookKeyGenerated(){
@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
          */
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
-                    "app.cambio",
+                    "app.deputadostalker",
                     PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
@@ -172,12 +172,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void cancelLoginFace() {
-        Toast.makeText(LoginActivity.this, R.string.facebook_login_cancel, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Login facebook cancelado", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void erroLoginFace(FacebookException e) {
-        Toast.makeText(LoginActivity.this, R.string.facebook_login_fail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "Falha no login com facebook", Toast.LENGTH_SHORT).show();
     }
 
     private void initInstances() {
@@ -248,16 +248,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         UsuarioService validateUserInfo = UsuarioService.getInstance();
 
         if (!TextUtils.isEmpty(password) && !validateUserInfo.isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordView.setError("Senha invalida");
             focusView = mPasswordView;
             cancel = true;
         }
         if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
+            mEmailView.setError("Campo obrigatorio");
             focusView = mEmailView;
             cancel = true;
         } else if (!validateUserInfo.isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+            mEmailView.setError("Email invalido");
             focusView = mEmailView;
             cancel = true;
         }

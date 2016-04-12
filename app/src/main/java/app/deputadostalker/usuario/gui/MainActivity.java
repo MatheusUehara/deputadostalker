@@ -41,15 +41,15 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
     ViewPagerAdapter adapter;
     TabLayout tabs;
     private int[] tabIcons = {
-            R.mipmap.ic_profile_white,
-            R.mipmap.ic_map_marker,
-            R.mipmap.ic_message_white};
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher};
 
     String TITLES1[] = {"Perfil","Configurações","Sair"};
 
-    int ICONS[] = {R.mipmap.ic_profile,
-            R.mipmap.ic_settings,
-            R.mipmap.ic_exit};
+    int ICONS[] = {R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher};
 
     String NAME;
     String EMAIL;
@@ -96,9 +96,9 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new MatchFragment(), "match");
-        adapter.addFrag(new GlobalFragment(), "location");
-        adapter.addFrag(new GlobalFragment(), "chat");
+        adapter.addFrag(new BlankFragment(), "match");
+        adapter.addFrag(new BlankFragment(), "location");
+        adapter.addFrag(new BlankFragment(), "chat");
         viewPager.setAdapter(adapter);
     }
 
@@ -177,9 +177,9 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
     public void logout() {
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-        alertDialogBuilder.setTitle(R.string.exit);
-        alertDialogBuilder.setMessage(R.string.exit_app_message);
-        alertDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setTitle("Sair");
+        alertDialogBuilder.setMessage("Tem certeza que deseja sair?");
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
@@ -205,7 +205,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
                 }
             }
         });
-        alertDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

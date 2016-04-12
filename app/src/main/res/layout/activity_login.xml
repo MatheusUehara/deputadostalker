@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/loginactivity_logo_from_login"
+                android:layout_marginTop="10dp"
                 android:weightSum="1">
 
                 <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
@@ -54,12 +54,12 @@
                         android:id="@+id/txt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/prompt_email"
+                        android:hint="email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:textColorHint="@color/grey_0" />
+                        android:textColorHint="@color/cardview_dark_background" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
@@ -69,14 +69,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
-                        android:hint="@string/prompt_password"
+                        android:hint="password"
                         android:imeActionId="@+id/login"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="8dp"
                         android:singleLine="true"
-                        android:textColorHint="@color/grey_0" />
+                        android:textColorHint="@color/cardview_dark_background" />
                 </android.support.design.widget.TextInputLayout>
 
                 <LinearLayout
@@ -89,15 +89,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/noaccount_background"
                         android:gravity="center"
-                        android:textColor="@color/grey_1000"
+                        android:textColor="@color/cardview_dark_background"
                         android:paddingBottom="15dp"
                         android:clickable="true"
                         android:layout_marginTop="2dp"
                         android:paddingLeft="2dp"
                         android:paddingTop="15dp"
-                        android:text="@string/forgot_password"
+                        android:text="Esqueceu password"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <TextView
@@ -112,14 +111,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/grey_1000"
+                        android:textColor="@color/cardview_dark_background"
                         android:layout_marginTop="2dp"
-                        android:background="@drawable/noaccount_background"
                         android:gravity="center"
                         android:paddingBottom="15dp"
                         android:paddingRight="2dp"
                         android:paddingTop="15dp"
-                        android:text="@string/create_account"
+                        android:text="criar conta"
                         android:clickable="true"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
                 </LinearLayout>
@@ -130,9 +128,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/common_plus_signin_btn_text_dark"
-                    android:background="@color/app_primary_dark"
+                    android:background="@color/cardview_dark_background"
                     android:layout_marginTop="2dp"
-                    android:text="@string/action_sign_in"
+                    android:text="Entrar"
                     android:allowUndo="false" />
 
                 <TextView
@@ -140,8 +138,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
-                    android:text="@string/different_login"
-                    android:textColor="@color/grey_1000"
+                    android:text="login diferente"
+                    android:textColor="@color/cardview_dark_background"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <com.facebook.login.widget.LoginButton

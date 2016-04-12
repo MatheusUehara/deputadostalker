@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="148dp"
-    android:background="@color/app_primary_dark"
+    android:background="@color/cardview_dark_background"
     android:orientation="vertical"
     android:weightSum="1">
 
 
-    <app.cambio.usuario.service.CircularNetworkImageView
+    <app.deputadostalker.usuario.service.CircularNetworkImageView
         android:id="@+id/circleView"
         android:layout_width="60dp"
         android:layout_height="60dp"
