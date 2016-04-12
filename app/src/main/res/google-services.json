@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "cambio-1245",
+    "project_number": "407342834062",
+    "name": "cambio"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407342834062:android:78b9c8e573427dfd",
+        "client_id": "android:app.cambio",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "app.cambio",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407342834062-8uvvhmoqd3ksas1mevqd3p8a3kl2otv9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.cambio",
+            "certificate_hash": "4C9D63545A4F840B0D20C8E9E3F75417E0C242F4"
+          }
+        },
+        {
+          "client_id": "407342834062-em8te0fpebu0hful3gs7h1psvqiq8iej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

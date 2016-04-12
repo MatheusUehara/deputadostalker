@@ -1,4 +1,4 @@
-package com.example.raiss.deputadostalker;
+package app.deputadostalker;
 
 import org.junit.Test;
 
