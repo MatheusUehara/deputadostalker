@@ -16,12 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.gui.PerfilDeputado;
 import app.deputadostalker.util.Session;
 
 public class MainActivity extends android.support.v7.app.AppCompatActivity{
@@ -54,6 +56,14 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(MainActivity.this);
         setContentView(R.layout.activity_main);
+
+        Button b = (Button) findViewById(R.id.pesquisa_deputado);
+        b.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+                startActivity(i);
+            }
+        });
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
