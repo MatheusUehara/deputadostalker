@@ -8,19 +8,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.LoginButton;
@@ -30,13 +23,12 @@ import com.google.android.gms.common.SignInButton;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import app.deputadostalker.R;
-import app.deputadostalker.util.Session;
 import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
-import app.deputadostalker.usuario.service.UsuarioService;
-import app.deputadostalker.util.Constants;
+import app.deputadostalker.util.Session;
 
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {

@@ -27,10 +27,10 @@ public class SplashAct extends Activity implements Runnable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        handler = new Handler();
-        handler.postDelayed(this, 2000);
         final ImageView image = (ImageView) findViewById(R.id.imageView);
         image.setImageResource(R.mipmap.ic_launcher);
+        handler = new Handler();
+        handler.postDelayed(this, 2000);
     }
 
 

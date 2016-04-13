@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="197dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.50">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/img_deputado_1"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton3"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton4"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton5"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton6"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.50">
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton7"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton8"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton9"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton10"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ImageButton11"
+                            android:src="@mipmap/ic_launcher"
+                            android:layout_weight="0.20" />
+                </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Pesquisa Deputado"
+                    android:id="@+id/pesquisa_deputado"
+                    android:layout_weight="0.50" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Deputado Favorito"
+                    android:id="@+id/deputado_favorito"
+                    android:layout_weight="0.50" />
+        </LinearLayout>
+
+</LinearLayout>

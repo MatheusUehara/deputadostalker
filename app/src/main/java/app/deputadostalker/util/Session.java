@@ -1,6 +1,7 @@
 package app.deputadostalker.util;
 
 import android.content.Context;
+
 import app.deputadostalker.usuario.dominio.Usuario;
 
 /**

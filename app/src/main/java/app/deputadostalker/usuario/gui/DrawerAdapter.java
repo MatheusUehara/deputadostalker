@@ -10,11 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 
 import app.deputadostalker.R;
-import app.deputadostalker.usuario.service.CircularNetworkImageView;
-import app.deputadostalker.usuario.service.CustomVolleyRequest;
 import app.deputadostalker.usuario.service.CircularNetworkImageView;
 import app.deputadostalker.usuario.service.CustomVolleyRequest;
 

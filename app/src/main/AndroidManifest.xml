@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.deputadostalker">
 
-	<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,19 +12,34 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="app.deputadostalker.usuario.gui.LoginActivity"
-            android:label="@string/app_name" >
+            android:name=".usuario.gui.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".util.SplashAct">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".util.SplashAct" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".usuario.gui.MainActivity"
+            android:label="Deputado Stalker"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".deputado.gui.PerfilDeputado"
+            android:label="Perfil Depudato"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <!-- Facebook Config -->
@@ -37,15 +53,6 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- Facebook Config END -->
-
-        <activity
-            android:name=".usuario.gui.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
     </application>
 
-
 </manifest>
-

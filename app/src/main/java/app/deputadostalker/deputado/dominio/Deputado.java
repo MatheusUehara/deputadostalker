@@ -1,8 +1,8 @@
 package app.deputadostalker.deputado.dominio;
 
 import app.deputadostalker.util.Estado;
-import app.deputadostalker.util.Sexo;
 import app.deputadostalker.util.Partido;
+import app.deputadostalker.util.Sexo;
 
 /**
  * Classe de dominio dos deputados.
