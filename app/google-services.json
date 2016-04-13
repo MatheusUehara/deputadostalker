@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_id": "deputadostalker-1279",
+    "project_number": "932301739657",
+    "name": "deputadoStalker"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932301739657:android:19d0f3bbf41c805a",
+        "client_id": "android:app.deputadostalker",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "app.deputadostalker",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932301739657-a063ugk19h1hk3n37jtrm808sadhgspj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.deputadostalker",
+            "certificate_hash": "EEDB3DF1B7CC84840CEE82B40F93A61D530FC8F5"
+          }
+        },
+        {
+          "client_id": "932301739657-v1r6ucqpv1651rik7omshifjak9vr6ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

@@ -39,13 +39,7 @@ import app.deputadostalker.usuario.service.UsuarioService;
 import app.deputadostalker.util.Constants;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
-
-
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
-    private Button mEmailSignInButton;
-    private TextView txt_create, txt_forgot;
+public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
 
     GoogleSign googleSign;
     FacebookSign facebookSign;
@@ -73,12 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(LoginActivity.this);
         setContentView(R.layout.activity_login);
-
         final ImageView image = (ImageView) findViewById(R.id.logo);
         image.setImageResource(R.mipmap.ic_launcher);
 
         this.isFacebookKeyGenerated();
-        initInstances();
 
         googleSign      = new GoogleSign(this,this);
 
@@ -128,10 +120,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void isFacebookKeyGenerated(){
-        /**
-         * Existe um problema na geração da chave do facebook, que uma vez cadastrada
-         * a autenticação não deve cadastrar outra, é necessário usar a que foi usada FUREVER
-         */
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
                     "app.deputadostalker",
@@ -179,93 +167,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void erroLoginFace(FacebookException e) {
         Toast.makeText(LoginActivity.this, "Falha no login com facebook", Toast.LENGTH_SHORT).show();
     }
-
-    private void initInstances() {
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.txt_email);
-        mPasswordView = (EditText) findViewById(R.id.txt_password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        txt_create = (TextView) findViewById(R.id.txt_create);
-        txt_create.setOnClickListener(this);
-
-        txt_forgot = (TextView) findViewById(R.id.txt_forgot);
-        txt_forgot.setOnClickListener(this);
-
-        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(this);
-
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        String email = mEmailView.getText().toString();
-
-        switch (v.getId()) {
-            case R.id.email_sign_in_button:
-                attemptLogin();
-                if (mEmailView.getError() == null && mPasswordView.getError() == null){
-                    Intent i = new Intent (LoginActivity.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-                break;
-            case R.id.txt_create:
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                intent.putExtra(Constants.TAG_EMAIL, email);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.txt_forgot:
-                Intent intentForgot = new Intent(LoginActivity.this, ForgotPassActivity.class);
-                intentForgot.putExtra(Constants.TAG_EMAIL, email);
-                startActivity(intentForgot);
-                finish();
-                break;
-        }
-    }
-
-    private void attemptLogin() {
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        UsuarioService validateUserInfo = UsuarioService.getInstance();
-
-        if (!TextUtils.isEmpty(password) && !validateUserInfo.isPasswordValid(password)) {
-            mPasswordView.setError("Senha invalida");
-            focusView = mPasswordView;
-            cancel = true;
-        }
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError("Campo obrigatorio");
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!validateUserInfo.isEmailValid(email)) {
-            mEmailView.setError("Email invalido");
-            focusView = mEmailView;
-            cancel = true;
-        }
-        if (cancel) {
-            focusView.requestFocus();
-        }
-    }
-
 
     @Override
     public void onStart(){

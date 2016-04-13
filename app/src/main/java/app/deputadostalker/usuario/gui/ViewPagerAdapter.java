@@ -39,7 +39,5 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return null;
-        //Se quiser retornar o titulo da tab
-        //return mFragmentTitleList.get(position);
     }
 }

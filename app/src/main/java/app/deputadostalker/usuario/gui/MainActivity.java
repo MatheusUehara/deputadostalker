@@ -25,8 +25,6 @@ import android.widget.Toast;
 
 
 import app.deputadostalker.R;
-//import app.deputadostalker.cambista.gui.GlobalFragment;
-//import app.deputadostalker.cambista.gui.MatchFragment;
 import app.deputadostalker.util.Session;
 
 public class MainActivity extends android.support.v7.app.AppCompatActivity{
@@ -36,14 +34,6 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
     }
 
     Toolbar toolbar;
-
-    ViewPager pager;
-    ViewPagerAdapter adapter;
-    TabLayout tabs;
-    private int[] tabIcons = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher};
 
     String TITLES1[] = {"Perfil","Configurações","Sair"};
 
@@ -75,31 +65,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         NAME = Session.getUsuarioLogado().getName();
         USER_IMAGE = Session.getUsuarioLogado().getImageUrl();
 
-        slidingTabs();
         davDrawer();
-    }
-
-    public void slidingTabs(){
-        pager = (ViewPager) findViewById(R.id.pager);
-        setupViewPager(pager);
-
-        tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.setupWithViewPager(pager);
-        setupTabIcons();
-    }
-
-    private void setupTabIcons() {
-        tabs.getTabAt(0).setIcon(tabIcons[0]);
-        tabs.getTabAt(1).setIcon(tabIcons[1]);
-        tabs.getTabAt(2).setIcon(tabIcons[2]);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new BlankFragment(), "match");
-        adapter.addFrag(new BlankFragment(), "location");
-        adapter.addFrag(new BlankFragment(), "chat");
-        viewPager.setAdapter(adapter);
     }
 
     public void davDrawer(){
