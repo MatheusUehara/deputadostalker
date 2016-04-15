@@ -1,4 +1,5 @@
-package app.deputadostalker.usuario.gui;
+package app.deputadostalker.deputado.gui;
+
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,19 +9,21 @@ import android.view.ViewGroup;
 
 import app.deputadostalker.R;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class PerfilFragment extends Fragment {
 
-public class BlankFragment extends Fragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public PerfilFragment() {
+        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_blank, container,false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
-
 
 }

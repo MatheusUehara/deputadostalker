@@ -5,25 +5,20 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import app.deputadostalker.R;
-import app.deputadostalker.usuario.gui.BlankFragment;
 import app.deputadostalker.usuario.gui.MainActivity;
-import app.deputadostalker.usuario.gui.ViewPagerAdapter;
 
 public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
 
     Toolbar toolbar;
 
+    public static int idPerfilDeputado;
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
-    private int[] tabIcons = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher};
-
 
     @Override
     public void onBackPressed() {
@@ -38,7 +33,19 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         setContentView(R.layout.activity_perfil_deputado);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
+
         slidingTabs();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PerfilDeputado.this, MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
     }
 
     public void slidingTabs(){
@@ -47,20 +54,15 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
         tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(pager);
-        setupTabIcons();
+
     }
 
-    private void setupTabIcons() {
-        tabs.getTabAt(0).setIcon(tabIcons[0]);
-        tabs.getTabAt(1).setIcon(tabIcons[1]);
-        tabs.getTabAt(2).setIcon(tabIcons[2]);
-    }
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new BlankFragment(), "PERFIL");
-        adapter.addFrag(new BlankFragment(), "CALENDARIO");
-        adapter.addFrag(new BlankFragment(), "PROPOSIÇÕES");
+        adapter.addFrag(new PerfilFragment(), "Perfil");
+        adapter.addFrag(new PresencaFragment(), "Presenças");
+        adapter.addFrag(new ProposicaoDeputado(), "Proposições");
         viewPager.setAdapter(adapter);
     }
 }

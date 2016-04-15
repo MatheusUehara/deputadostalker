@@ -1,4 +1,4 @@
-package app.deputadostalker.usuario.gui;
+package app.deputadostalker.deputado.gui;
 
 
 import android.support.v4.app.Fragment;
@@ -38,6 +38,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return null;
+        return mFragmentTitleList.get(position);
     }
 }

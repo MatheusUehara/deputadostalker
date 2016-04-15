@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".util.SplashAct">
+        <activity android:name=".usuario.gui.SplashAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

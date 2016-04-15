@@ -1,4 +1,4 @@
-package app.deputadostalker.util;
+package app.deputadostalker.usuario.gui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.ImageView;
 
 import app.deputadostalker.R;
 import app.deputadostalker.usuario.dominio.Usuario;
-import app.deputadostalker.usuario.gui.LoginActivity;
-import app.deputadostalker.usuario.gui.MainActivity;
+import app.deputadostalker.util.Session;
 
 /**
  * Created by Uehara on 16/07/2015.
@@ -26,11 +24,8 @@ public class SplashAct extends Activity implements Runnable{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        final ImageView image = (ImageView) findViewById(R.id.imageView);
-        image.setImageResource(R.mipmap.ic_launcher);
         handler = new Handler();
-        handler.postDelayed(this, 2000);
+        handler.postDelayed(this, 1000);
     }
 
 
