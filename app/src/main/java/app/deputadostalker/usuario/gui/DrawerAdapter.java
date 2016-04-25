@@ -22,8 +22,8 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
-    private String mNavTitles[];
-    private int mIcons[];
+    private String mNavTitles[] = {"Perfil","Configurações","Sair"};
+    private int mIcons[] =  {R.drawable.ic_perfil,R.drawable.ic_config,R.drawable.ic_exit};
     private String name;
     private String profile;
     private String email;
@@ -68,9 +68,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
 
     }
 
-    DrawerAdapter(String Titles[],int Icons[],String Name,String Email, String Profile,Context passedContext){
-        mNavTitles = Titles;
-        mIcons = Icons;
+    DrawerAdapter(String Name,String Email, String Profile,Context passedContext){
         name = Name;
         email = Email;
         profile = Profile;

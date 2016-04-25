@@ -34,12 +34,6 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
     Toolbar toolbar;
 
-    String TITLES1[] = {"Perfil","Configurações","Sair"};
-
-    int ICONS[] = {R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher};
-
     String NAME;
     String EMAIL;
     String USER_IMAGE;
@@ -68,17 +62,18 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        EMAIL = Session.getUsuarioLogado().getEmail();
-        NAME = Session.getUsuarioLogado().getName();
-        USER_IMAGE = Session.getUsuarioLogado().getImageUrl();
-
         davDrawer();
     }
 
     public void davDrawer(){
+
+        EMAIL = Session.getUsuarioLogado().getEmail();
+        NAME = Session.getUsuarioLogado().getName();
+        USER_IMAGE = Session.getUsuarioLogado().getImageUrl();
+
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new DrawerAdapter(TITLES1,ICONS,NAME,EMAIL,USER_IMAGE,this);
+        mAdapter = new DrawerAdapter(NAME,EMAIL,USER_IMAGE,this);
         mRecyclerView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);

@@ -100,19 +100,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-                <Button
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Pesquisa Deputado"
-                    android:id="@+id/pesquisa_deputado"
-                    android:layout_weight="0.50" />
+                    android:layout_weight="0.5">
 
-                <Button
-                    android:layout_width="wrap_content"
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Pesquisa Deputado"
+                            android:id="@+id/pesquisa_deputado"
+                            android:layout_weight="0.50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Pesquisar Deputado"
+                            android:id="@+id/txtPesquisarDeputado"
+                            android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Deputado Favorito"
-                    android:id="@+id/deputado_favorito"
-                    android:layout_weight="0.50" />
+                    android:layout_weight="0.5">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Deputado Favorito"
+                            android:id="@+id/deputado_favorito"
+                            android:layout_weight="0.50" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Deputado Favorito"
+                            android:id="@+id/txtDeputadoFavorito"
+                            android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+
         </LinearLayout>
+
+
 
 </LinearLayout>
