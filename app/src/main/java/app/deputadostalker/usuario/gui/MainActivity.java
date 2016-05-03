@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +22,28 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
+import java.util.List;
 
 import app.deputadostalker.R;
+import app.deputadostalker.api.DeputadoApi;
+import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.deputado.gui.PerfilDeputado;
+import app.deputadostalker.util.DeputadoDeserializer;
 import app.deputadostalker.util.Session;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class MainActivity extends android.support.v7.app.AppCompatActivity{
+
+    public static final String TAG = "LOG";
+    public static final String API = "http://127.0.0.1/deputadostalker-rest/";
 
     public void onBackPressed() {
         logout();
@@ -63,6 +80,68 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         setSupportActionBar(toolbar);
 
         davDrawer();
+    }
+//get deputados... usando retrofit
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(Deputado.class, new DeputadoDeserializer()).create();
+
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .baseUrl(API)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        final DeputadoApi deputadoAPI = retrofit.create(DeputadoApi.class);
+
+        /*final Call<List<Deputado>> call = deputadoAPI.getDeputados("getDeputados/");
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+
+                try {
+                    List<Deputado> listCars = call.execute().body();
+
+                    if( listCars != null ){
+                        for( Deputado d : listCars ){
+                            Log.i(TAG, "nome parlamentar: " + d.getNomeParlamentarAtual());
+                        }
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i(TAG, "MANY CAR request Ok");
+                    }
+                });
+            }
+        }.start();
+*/
+        //usando assincrono tutorial mostrando para pbter um elemento
+       /* call.enqueue(new Callback<Deputado>() {
+            @Override
+            public void onResponse(Response<Deputado> response, Retrofit retrofit) {
+              Deputado d = response.body();
+
+                if (d != null){
+                    Log.i(TAG, d.getNomeParlamentarAtual());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.i(TAG , "erro ");
+            }
+        });*/
+
+
     }
 
     public void davDrawer(){

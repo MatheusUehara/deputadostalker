@@ -16,7 +16,6 @@ import app.deputadostalker.util.Session;
  */
 public class SplashAct extends Activity implements Runnable{
 
-
     private Handler handler;
 
     @Override
