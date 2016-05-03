@@ -23,6 +23,8 @@ import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.util.Session;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmObject;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 
@@ -35,7 +37,6 @@ public class SplashAct extends Activity implements Runnable{
     private Handler handler;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
@@ -48,32 +49,25 @@ public class SplashAct extends Activity implements Runnable{
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+    public RealmResults<Deputado> busca(String nome ){
         Realm realm = Realm.getDefaultInstance();
         init(realm);
 
-        RealmResults<Gabinete> gabinetes = realm.where(Gabinete.class).findAll();
-        RealmResults<Deputado> deputados = realm.where(Deputado.class).findAll();
+        RealmResults<Deputado> deputados = realm.where(Deputado.class)
+                .contains("nomeParlamentar",nome)
+                .or()
+                .contains("nomeCivil", nome)
+                .findAll();
 
-        Log.i("LOG", "Version: " + realm.getConfiguration().getSchemaVersion());
-        Log.i("LOG", "São " + deputados.size() +" deputados");
-        Log.i("LOG", "São " + gabinetes.size() +" gabinetes");
-
-        for (Gabinete s : gabinetes) {
-            Log.i("LOG", "Id do Gabinete: " + s.getIdGabinete());
-        }
-
-        for (Deputado d : deputados) {
-            Log.i("LOG", "Id do deputado: " + d.getIdParlamentar());
-            Log.i("LOG", "Nome: " + d.getNomeParlamentar());
-            Log.i("LOG", "Estado que representa: " + d.getUfRepresentacaoAtual());
-        }
+//        for (Deputado d : deputados) {
+//            Log.i("LOG", "Id do deputado: " + d.getIdParlamentar());
+//            Log.i("LOG", "Nome: " + d.getNomeParlamentar());
+//            Log.i("LOG", "Estado que representa: " + d.getUfRepresentacaoAtual());
+//        }
 
         realm.close();
-    }
+        return deputados;
+    };
 
 
     private void init(Realm realm) {
@@ -92,8 +86,6 @@ public class SplashAct extends Activity implements Runnable{
             /* Gabinete */
                 is = assetManager.open("gabinete.json");
                 realm.createAllFromJson(Gabinete.class, is);
-
-
 
             /* Partido */
                 is = assetManager.open("partido.json");
@@ -171,5 +163,4 @@ public class SplashAct extends Activity implements Runnable{
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
-
 }
