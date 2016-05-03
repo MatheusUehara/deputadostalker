@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 /**
  * Created by igormlgomes on 01/05/16.
  */
-public class ComissoesDeputado  {
+public class ComissoesDeputado extends RealmObject  {
 
     int orgao_idOrgao;
     int deputado_ideCadastro;
