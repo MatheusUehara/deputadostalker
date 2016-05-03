@@ -56,9 +56,22 @@ public class SplashAct extends Activity implements Runnable{
         init(realm);
 
         RealmResults<Gabinete> gabinetes = realm.where(Gabinete.class).findAll();
+        RealmResults<Deputado> deputados = realm.where(Deputado.class).findAll();
 
-        Log.i("LOG", "São " + gabinetes.size() +" gabinetes");
         Log.i("LOG", "Version: " + realm.getConfiguration().getSchemaVersion());
+        Log.i("LOG", "São " + deputados.size() +" deputados");
+        Log.i("LOG", "São " + gabinetes.size() +" gabinetes");
+
+        for (Gabinete s : gabinetes) {
+            Log.i("LOG", "Id do Gabinete: " + s.getIdGabinete());
+        }
+
+        for (Deputado d : deputados) {
+            Log.i("LOG", "Id do deputado: " + d.getIdParlamentar());
+            Log.i("LOG", "Nome: " + d.getNomeParlamentar());
+            Log.i("LOG", "Estado que representa: " + d.getUfRepresentacaoAtual());
+        }
+
         realm.close();
     }
 
@@ -91,12 +104,12 @@ public class SplashAct extends Activity implements Runnable{
                 realm.createOrUpdateAllFromJson(Comissoes.class, is);
 
             /* ComissoesDeputado */
-//                is = assetManager.open("comissoesDeputado.json");
-//                realm.createAllFromJson( ComissoesDeputado.class, is );
+                is = assetManager.open("comissoesDeputado.json");
+                realm.createAllFromJson( ComissoesDeputado.class, is );
 
             /* Deputados */
-//                is = assetManager.open("comissoes.json");
-//                realm.createOrUpdateAllFromJson( Deputado.class, is );
+                is = assetManager.open("deputado.json");
+                realm.createOrUpdateAllFromJson( Deputado.class, is );
 
 
                 realm.commitTransaction();
@@ -106,13 +119,8 @@ public class SplashAct extends Activity implements Runnable{
                 realm.cancelTransaction();
             }
         } else {
-            RealmResults<Gabinete> gabinetes = realm.where(Gabinete.class).findAll();
-            for (Gabinete s : gabinetes) {
-                Log.i("LOG", "Id do Gabinete: " + s.getIdGabinete());
-                Log.i("LOG", "Anexo: " + s.getAnexo());
-                Log.i("LOG", "Telefone: " + s.getTelefone());
-                Log.i("LOG", "Version: " + realm.getConfiguration().getSchemaVersion());
-            }
+            Log.i("LOG", "Caiu no else");
+
         }
     }
 

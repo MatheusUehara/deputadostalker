@@ -11,7 +11,7 @@ import io.realm.annotations.PrimaryKey;
  * Classe de dominio dos deputados.
  * @author  Matheus Uehara
  */
-public class Deputado {
+public class Deputado extends RealmObject {
 
 	@PrimaryKey
 	private String ideCadastro; // Usado pra pesquisar dados dos deputados
