@@ -5,12 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,12 +26,23 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.io.InputStream;
 
 import app.deputadostalker.R;
+import app.deputadostalker.comissoes.dominio.Comissoes;
 import app.deputadostalker.deputado.gui.PerfilDeputado;
+import app.deputadostalker.gabinete.dominio.Gabinete;
+import app.deputadostalker.partido.dominio.Partido;
 import app.deputadostalker.util.Session;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
-public class MainActivity extends android.support.v7.app.AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         logout();
@@ -52,8 +68,8 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         Button b = (Button) findViewById(R.id.pesquisa_deputado);
-        b.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+        b.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
                 startActivity(i);
             }
@@ -65,7 +81,8 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         davDrawer();
     }
 
-    public void davDrawer(){
+
+    public void davDrawer() {
 
         EMAIL = Session.getUsuarioLogado().getEmail();
         NAME = Session.getUsuarioLogado().getName();
@@ -73,13 +90,13 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new DrawerAdapter(NAME,EMAIL,USER_IMAGE,this);
+        mAdapter = new DrawerAdapter(NAME, EMAIL, USER_IMAGE, this);
         mRecyclerView.setAdapter(mAdapter);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close){
+        mDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -95,7 +112,8 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         mDrawerToggle.syncState();
 
         final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
-            @Override public boolean onSingleTapUp(MotionEvent e) {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
                 return true;
             }
         });
@@ -151,7 +169,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
 
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
-                if (pref.getBoolean("signed_in_with_facebook",false)){
+                if (pref.getBoolean("signed_in_with_facebook", false)) {
                     LoginManager.getInstance().logOut();
                     SharedPreferences.Editor editor = pref.edit();
                     editor.clear();
@@ -161,7 +179,7 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                     finish();
-                }else if(pref.getBoolean("signed_in_with_google",false)){
+                } else if (pref.getBoolean("signed_in_with_google", false)) {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.clear();
                     editor.commit();
@@ -182,4 +200,39 @@ public class MainActivity extends android.support.v7.app.AppCompatActivity{
         alertDialogBuilder.show();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://app.deputadostalker.usuario.gui/http/host/path")
+        );
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://app.deputadostalker.usuario.gui/http/host/path")
+        );
+    }
 }

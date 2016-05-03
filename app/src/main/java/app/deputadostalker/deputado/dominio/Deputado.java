@@ -1,8 +1,11 @@
 package app.deputadostalker.deputado.dominio;
 
+import app.deputadostalker.gabinete.dominio.Gabinete;
 import app.deputadostalker.util.Estado;
 import app.deputadostalker.util.Partido;
 import app.deputadostalker.util.Sexo;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Classe de dominio dos deputados.
@@ -10,21 +13,75 @@ import app.deputadostalker.util.Sexo;
  */
 public class Deputado {
 
-	String ideCadastro; // Usado pra pesquisar dados dos deputados
-	String email;
-	String nomeProfissao;
-	String dataNascimento ;	
-	String situacaoNaLegislaturaAtual;
-	String nomeParlamentarAtual;
-	String nomeCivil;
-	Estado ufRepresentacaoAtual;
-	Sexo sexo;
-	Partido partido;
-	
-	public Deputado(String siglaEstado){
-		this.ufRepresentacaoAtual = Estado.getEstado(siglaEstado);
-		System.out.println(this.ufRepresentacaoAtual.getNomeEstado());
+	@PrimaryKey
+	private String ideCadastro; // Usado pra pesquisar dados dos deputados
+	private int matricula;
+	private int idParlamentar;
+	private String nomeCivil;
+	private String nomeParlamentar;
+	private String urlFoto;
+	private String sexo;
+	private String ufRepresentacaoAtual;
+	private String email;
+	private String dataNascimento ;
+	private String nomeProfissao;
+	private String situacaoNaLegislaturaAtual;
+	private int gabinete_idGabinete;
+	private String partido_idPartido;
+
+	public int getMatricula() {
+		return matricula;
 	}
+
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
+	}
+
+	public int getIdParlamentar() {
+		return idParlamentar;
+	}
+
+	public void setIdParlamentar(int idParlamentar) {
+		this.idParlamentar = idParlamentar;
+	}
+
+	public String getNomeParlamentar() {
+		return nomeParlamentar;
+	}
+
+	public void setNomeParlamentar(String nomeParlamentar) {
+		this.nomeParlamentar = nomeParlamentar;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+
+	public int getIdGabinete() {
+		return gabinete_idGabinete;
+	}
+
+	public void setIdGabinete(Gabinete idGabinete) {
+		this.gabinete_idGabinete = idGabinete.getIdGabinete();
+	}
+
+	public String getPartido() {
+		return partido_idPartido;
+	}
+
+	public void setPartido(app.deputadostalker.partido.dominio.Partido partido) {
+		this.partido_idPartido = partido.getIdPartido();
+	}
+
+
+//	public Deputado(String siglaEstado){
+//		this.ufRepresentacaoAtual = Estado.getEstado(siglaEstado);
+//		System.out.println(this.ufRepresentacaoAtual.getNomeEstado());
+//	}
 	
 	public Deputado(){
 		
@@ -62,11 +119,11 @@ public class Deputado {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Estado getUfRepresentacaoAtual() {
+	public String getUfRepresentacaoAtual() {
 		return ufRepresentacaoAtual;
 	}
 
-	public void setUfRepresentacaoAtual(Estado ufRepresentacaoAtual) {
+	public void setUfRepresentacaoAtual(String ufRepresentacaoAtual) {
 		this.ufRepresentacaoAtual = ufRepresentacaoAtual;
 	}
 
@@ -78,14 +135,6 @@ public class Deputado {
 		this.situacaoNaLegislaturaAtual = situacaoNaLegislaturaAtual;
 	}
 
-	public String getNomeParlamentarAtual() {
-		return nomeParlamentarAtual;
-	}
-
-	public void setNomeParlamentarAtual(String nomeParlamentarAtual) {
-		this.nomeParlamentarAtual = nomeParlamentarAtual;
-	}
-
 	public String getNomeCivil() {
 		return nomeCivil;
 	}
@@ -94,11 +143,11 @@ public class Deputado {
 		this.nomeCivil = nomeCivil;
 	}
 
-	public Sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(Sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	
