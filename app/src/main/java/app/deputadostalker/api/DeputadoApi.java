@@ -4,10 +4,7 @@ import java.util.List;
 
 import app.deputadostalker.deputado.dominio.Deputado;
 import retrofit.Call;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
-import retrofit.http.POST;
 import retrofit.http.Path;
 
 /**

@@ -1,155 +1,142 @@
 package app.deputadostalker.deputado.dominio;
 
 import app.deputadostalker.gabinete.dominio.Gabinete;
-import app.deputadostalker.util.Estado;
-import app.deputadostalker.util.Partido;
-import app.deputadostalker.util.Sexo;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Classe de dominio dos deputados.
- * @author  Matheus Uehara
+ *
+ * @author Matheus Uehara
  */
 public class Deputado extends RealmObject {
 
-	@PrimaryKey
-	private String ideCadastro; // Usado pra pesquisar dados dos deputados
-	private int matricula;
-	private int idParlamentar;
-	private String nomeCivil;
-	private String nomeParlamentar;
-	private String urlFoto;
-	private String sexo;
-	private String ufRepresentacaoAtual;
-	private String email;
-	private String dataNascimento ;
-	private String nomeProfissao;
-	private String situacaoNaLegislaturaAtual;
-	private int gabinete_idGabinete;
-	private String partido_idPartido;
+    @PrimaryKey
+    private String ideCadastro;
+    private int matricula;
+    private int idParlamentar;
+    private String nomeCivil;
+    private String nomeParlamentar;
+    private String urlFoto;
+    private String sexo;
+    private String ufRepresentacaoAtual;
+    private String email;
+    private String dataNascimento;
+    private String nomeProfissao;
+    private String situacaoNaLegislaturaAtual;
+    private int gabinete_idGabinete;
+    private String partido_idPartido;
 
-	public int getMatricula() {
-		return matricula;
-	}
+    public int getMatricula() {
+        return matricula;
+    }
 
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
 
-	public int getIdParlamentar() {
-		return idParlamentar;
-	}
+    public int getIdParlamentar() {
+        return idParlamentar;
+    }
 
-	public void setIdParlamentar(int idParlamentar) {
-		this.idParlamentar = idParlamentar;
-	}
+    public void setIdParlamentar(int idParlamentar) {
+        this.idParlamentar = idParlamentar;
+    }
 
-	public String getNomeParlamentar() {
-		return nomeParlamentar;
-	}
+    public String getNomeParlamentar() {
+        return nomeParlamentar;
+    }
 
-	public void setNomeParlamentar(String nomeParlamentar) {
-		this.nomeParlamentar = nomeParlamentar;
-	}
+    public void setNomeParlamentar(String nomeParlamentar) {
+        this.nomeParlamentar = nomeParlamentar;
+    }
 
-	public String getUrlFoto() {
-		return urlFoto;
-	}
+    public String getUrlFoto() {
+        return urlFoto;
+    }
 
-	public void setUrlFoto(String urlFoto) {
-		this.urlFoto = urlFoto;
-	}
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
 
-	public int getIdGabinete() {
-		return gabinete_idGabinete;
-	}
+    public int getIdGabinete() {
+        return gabinete_idGabinete;
+    }
 
-	public void setIdGabinete(Gabinete idGabinete) {
-		this.gabinete_idGabinete = idGabinete.getIdGabinete();
-	}
+    public void setIdGabinete(Gabinete idGabinete) {
+        this.gabinete_idGabinete = idGabinete.getIdGabinete();
+    }
 
-	public String getPartido() {
-		return partido_idPartido;
-	}
+    public String getPartido() {
+        return partido_idPartido;
+    }
 
-	public void setPartido(app.deputadostalker.partido.dominio.Partido partido) {
-		this.partido_idPartido = partido.getIdPartido();
-	}
+    public void setPartido(app.deputadostalker.partido.dominio.Partido partido) {
+        this.partido_idPartido = partido.getIdPartido();
+    }
 
+    public String getIdeCadastro() {
+        return ideCadastro;
+    }
 
-//	public Deputado(String siglaEstado){
-//		this.ufRepresentacaoAtual = Estado.getEstado(siglaEstado);
-//		System.out.println(this.ufRepresentacaoAtual.getNomeEstado());
-//	}
-	
-	public Deputado(){
-		
-	}
+    public void setIdeCadastro(String ideCadastro) {
+        this.ideCadastro = ideCadastro;
+    }
 
-	public String getIdeCadastro() {
-		return ideCadastro;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setIdeCadastro(String ideCadastro) {
-		this.ideCadastro = ideCadastro;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getNomeProfissao() {
+        return nomeProfissao;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setNomeProfissao(String nomeProfissao) {
+        this.nomeProfissao = nomeProfissao;
+    }
 
-	public String getNomeProfissao() {
-		return nomeProfissao;
-	}
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
 
-	public void setNomeProfissao(String nomeProfissao) {
-		this.nomeProfissao = nomeProfissao;
-	}
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
+    public String getUfRepresentacaoAtual() {
+        return ufRepresentacaoAtual;
+    }
 
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    public void setUfRepresentacaoAtual(String ufRepresentacaoAtual) {
+        this.ufRepresentacaoAtual = ufRepresentacaoAtual;
+    }
 
-	public String getUfRepresentacaoAtual() {
-		return ufRepresentacaoAtual;
-	}
+    public String getSituacaoNaLegislaturaAtual() {
+        return situacaoNaLegislaturaAtual;
+    }
 
-	public void setUfRepresentacaoAtual(String ufRepresentacaoAtual) {
-		this.ufRepresentacaoAtual = ufRepresentacaoAtual;
-	}
+    public void setSituacaoNaLegislaturaAtual(String situacaoNaLegislaturaAtual) {
+        this.situacaoNaLegislaturaAtual = situacaoNaLegislaturaAtual;
+    }
 
-	public String getSituacaoNaLegislaturaAtual() {
-		return situacaoNaLegislaturaAtual;
-	}
+    public String getNomeCivil() {
+        return nomeCivil;
+    }
 
-	public void setSituacaoNaLegislaturaAtual(String situacaoNaLegislaturaAtual) {
-		this.situacaoNaLegislaturaAtual = situacaoNaLegislaturaAtual;
-	}
+    public void setNomeCivil(String nomeCivil) {
+        this.nomeCivil = nomeCivil;
+    }
 
-	public String getNomeCivil() {
-		return nomeCivil;
-	}
+    public String getSexo() {
+        return sexo;
+    }
 
-	public void setNomeCivil(String nomeCivil) {
-		this.nomeCivil = nomeCivil;
-	}
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-	
-	
 }

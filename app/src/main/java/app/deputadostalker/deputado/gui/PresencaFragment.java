@@ -1,16 +1,15 @@
 package app.deputadostalker.deputado.gui;
 
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import app.deputadostalker.R;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import app.deputadostalker.R;
 
 
 //A simple {@link Fragment} subclass.
@@ -19,14 +18,16 @@ public class PresencaFragment extends Fragment {
     public PresencaFragment() {
         // Required empty public constructor
     }
+
     CalendarView calendarView;
     TextView dateDisplay;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_presenca, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_presenca,container, false);
+        View view = inflater.inflate(R.layout.fragment_presenca, container, false);
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         dateDisplay = (TextView) view.findViewById(R.id.date_display);
         dateDisplay.setText("Data: ");
@@ -41,8 +42,8 @@ public class PresencaFragment extends Fragment {
         });
         return view;
 
-       //Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-       //setSupportActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
 //caso precise criar um botão na fragment, o código é esse:
         /*Button calendarioB = (Button) view.findViewById(R.id.buttonCalendario);

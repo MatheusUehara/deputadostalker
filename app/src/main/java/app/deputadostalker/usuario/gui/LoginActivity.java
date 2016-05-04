@@ -21,34 +21,18 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 import app.deputadostalker.R;
-import app.deputadostalker.api.Client;
-import app.deputadostalker.api.DeputadoApi;
-import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
-import app.deputadostalker.util.DeputadoDeserializer;
 import app.deputadostalker.util.Session;
-import java.io.IOException;
-import okhttp3.OkHttpClient;
-//import okhttp3.Request;
-import okhttp3.Response;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-//import retrofit.Response;
-import retrofit.Retrofit;
 
+//import okhttp3.Request;
+//import retrofit.Response;
 
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {

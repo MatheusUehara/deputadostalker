@@ -8,21 +8,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import app.deputadostalker.R;
-import app.deputadostalker.usuario.gui.MainActivity;
+import app.deputadostalker.util.Session;
 
 public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
 
     Toolbar toolbar;
 
-    public static int idPerfilDeputado;
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(PerfilDeputado.this, MainActivity.class);
+        Session.setIdeCadastroDeputado("");
+        Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
         startActivity(i);
         finish();
     }
@@ -41,14 +41,15 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(PerfilDeputado.this, MainActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Session.setIdeCadastroDeputado("");
+                Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
                 startActivity(i);
+                finish();
             }
         });
     }
 
-    public void slidingTabs(){
+    public void slidingTabs() {
         pager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(pager);
 
@@ -56,7 +57,6 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         tabs.setupWithViewPager(pager);
 
     }
-
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());

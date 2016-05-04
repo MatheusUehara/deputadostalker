@@ -25,9 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <app.deputadostalker.usuario.service.CircularNetworkImageView
-                    android:id="@+id/imagemDeputado"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:id="@+id/fotoDeputado"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:src="@mipmap/ic_launcher" />
@@ -36,6 +36,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:layout_marginTop="20dp">
 
                     <TextView
@@ -43,23 +44,32 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Nome Parlamentar: "
-                        android:id="@+id/nomeParlamentar" />
+                        android:id="@+id/nomeParlamentar"
+                        android:textAlignment="center"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginLeft="10dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Nome Civil: "
-                        android:id="@+id/nomeCivil" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Partido: "
-                        android:id="@+id/partido" />
                 </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Nome Civil: "
+                android:id="@+id/nomeCivil"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Partido: "
+                android:id="@+id/partido"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

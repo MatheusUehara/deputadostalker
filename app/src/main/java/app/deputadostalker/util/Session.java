@@ -9,19 +9,33 @@ import app.deputadostalker.usuario.dominio.Usuario;
  */
 public class Session {
 
-public static Usuario usuarioLogado;
+    public static Usuario usuarioLogado;
 
-private static Context contexto = null;
+    public static String ideCadastroDeputado;
 
-    public static void setUsuarioLogado(Usuario usuario){
+    private static Context contexto = null;
+
+    public static String getIdeCadastroDeputado() {
+        return ideCadastroDeputado;
+    }
+
+    public static void setIdeCadastroDeputado(String ideCadastroDeputado) {
+        Session.ideCadastroDeputado = ideCadastroDeputado;
+    }
+
+    public static void setUsuarioLogado(Usuario usuario) {
         usuarioLogado = usuario;
     }
 
-    public static Usuario getUsuarioLogado(){
+    public static Usuario getUsuarioLogado() {
         return usuarioLogado;
     }
 
-    public static void setContexto(Context context){contexto = context;}
+    public static void setContexto(Context context) {
+        contexto = context;
+    }
 
-    public static Context getContexto(){return contexto;}
+    public static Context getContexto() {
+        return contexto;
+    }
 }

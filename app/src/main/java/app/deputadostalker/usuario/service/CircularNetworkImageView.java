@@ -35,7 +35,7 @@ public class CircularNetworkImageView extends NetworkImageView {
 
     @Override
     public void setImageBitmap(Bitmap bm) {
-        if(bm==null) return;
+        if (bm == null) return;
         setImageDrawable(new BitmapDrawable(mContext.getResources(),
                 getCircularBitmap(bm)));
     }
@@ -52,7 +52,7 @@ public class CircularNetworkImageView extends NetworkImageView {
                 bitmap.getHeight(), Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         int width = bitmap.getWidth();
-        if(bitmap.getWidth()>bitmap.getHeight())
+        if (bitmap.getWidth() > bitmap.getHeight())
             width = bitmap.getHeight();
         final int color = 0xff424242;
         final Paint paint = new Paint();

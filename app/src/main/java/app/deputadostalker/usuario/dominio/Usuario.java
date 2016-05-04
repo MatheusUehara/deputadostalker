@@ -5,8 +5,8 @@ package app.deputadostalker.usuario.dominio;
  */
 public class Usuario {
 
-    String id ;
-    String name ;
+    String id;
+    String name;
     String profileUrl;
     String imageUrl;
     String email;
@@ -32,9 +32,10 @@ public class Usuario {
         this.longitude = longitude;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return this.email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }

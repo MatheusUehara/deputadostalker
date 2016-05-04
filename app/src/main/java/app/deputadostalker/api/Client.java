@@ -1,13 +1,10 @@
 package app.deputadostalker.api;
 
-import android.util.Log;
-
 import java.io.IOException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * Created by Delando on 03/05/2016.

@@ -11,7 +11,7 @@ public class UsuarioService {
         super();
     }
 
-    public static UsuarioService getInstance(){
+    public static UsuarioService getInstance() {
         return instance;
     }
 

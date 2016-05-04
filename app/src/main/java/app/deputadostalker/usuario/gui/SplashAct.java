@@ -5,11 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.location.Address;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Button;
 
 import java.io.InputStream;
 
@@ -23,15 +21,12 @@ import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.util.Session;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmObject;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 
 /**
  * Created by Uehara on 16/07/2015.
  */
-public class SplashAct extends Activity implements Runnable{
+public class SplashAct extends Activity implements Runnable {
 
     private Handler handler;
 
@@ -45,38 +40,22 @@ public class SplashAct extends Activity implements Runnable{
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(realmConfiguration);
 
+        init();
     }
 
 
-    public RealmResults<Deputado> busca(String nome ){
-        Realm realm = Realm.getDefaultInstance();
-        init(realm);
-
-        RealmResults<Deputado> deputados = realm.where(Deputado.class)
-                .contains("nomeParlamentar",nome)
-                .or()
-                .contains("nomeCivil", nome)
-                .findAll();
-
-//        for (Deputado d : deputados) {
-//            Log.i("LOG", "Id do deputado: " + d.getIdParlamentar());
-//            Log.i("LOG", "Nome: " + d.getNomeParlamentar());
-//            Log.i("LOG", "Estado que representa: " + d.getUfRepresentacaoAtual());
-//        }
-
-        realm.close();
-        return deputados;
-    };
-
-
-    private void init(Realm realm) {
+    private void init() {
         SharedPreferences pref = getPreferences(MODE_PRIVATE);
 
         if (pref.getInt("flag", 0) == 0) {
             Log.i("LOG", "init()");
             pref.edit().putInt("flag", 1).apply();
 
+            Realm realm = Realm.getDefaultInstance();
+
+
             try {
+
                 AssetManager assetManager = getAssets();
                 InputStream is = null;
 
@@ -96,11 +75,11 @@ public class SplashAct extends Activity implements Runnable{
 
             /* ComissoesDeputado */
                 is = assetManager.open("comissoesDeputado.json");
-                realm.createAllFromJson( ComissoesDeputado.class, is );
+                realm.createAllFromJson(ComissoesDeputado.class, is);
 
             /* Deputados */
                 is = assetManager.open("deputado.json");
-                realm.createOrUpdateAllFromJson( Deputado.class, is );
+                realm.createOrUpdateAllFromJson(Deputado.class, is);
 
 
                 realm.commitTransaction();
@@ -111,7 +90,6 @@ public class SplashAct extends Activity implements Runnable{
             }
         } else {
             Log.i("LOG", "Caiu no else");
-
         }
     }
 
@@ -129,12 +107,12 @@ public class SplashAct extends Activity implements Runnable{
         boolean signedGoogle = pref.getBoolean("signed_in_with_google", false);
         boolean signedFacebook = pref.getBoolean("signed_in_with_facebook", false);
 
-        if (signedFacebook){
+        if (signedFacebook) {
             Usuario user = new Usuario();
-            user.setName(pref.getString("user_facebook_name",""));
-            user.setEmail(pref.getString("user_facebook_email",""));
-            user.setId(pref.getString("user_facebook_id",""));
-            user.setImageUrl(pref.getString("user_facebook_image_url",""));
+            user.setName(pref.getString("user_facebook_name", ""));
+            user.setEmail(pref.getString("user_facebook_email", ""));
+            user.setId(pref.getString("user_facebook_id", ""));
+            user.setImageUrl(pref.getString("user_facebook_image_url", ""));
             Session.setUsuarioLogado(user);
 
             Intent it = new Intent(SplashAct.this, MainActivity.class);
@@ -142,12 +120,12 @@ public class SplashAct extends Activity implements Runnable{
 
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }else if (signedGoogle){
+        } else if (signedGoogle) {
             Usuario user = new Usuario();
-            user.setName(pref.getString("user_google_name",""));
-            user.setEmail(pref.getString("user_google_email",""));
-            user.setId(pref.getString("user_google_id",""));
-            user.setImageUrl(pref.getString("user_google_image_url",""));
+            user.setName(pref.getString("user_google_name", ""));
+            user.setEmail(pref.getString("user_google_email", ""));
+            user.setId(pref.getString("user_google_id", ""));
+            user.setImageUrl(pref.getString("user_google_image_url", ""));
             Session.setUsuarioLogado(user);
 
             Intent it = new Intent(SplashAct.this, MainActivity.class);
@@ -155,7 +133,7 @@ public class SplashAct extends Activity implements Runnable{
 
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }else {
+        } else {
             Intent it = new Intent(SplashAct.this, LoginActivity.class);
             startActivity(it);
             finish();

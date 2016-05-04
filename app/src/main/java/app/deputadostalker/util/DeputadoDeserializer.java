@@ -19,13 +19,13 @@ public class DeputadoDeserializer implements JsonDeserializer<Object> {
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement deputado = json.getAsJsonObject();
-        Log.i("TAG","json:   " + json.getAsJsonObject().getAsString() );
+        Log.i("TAG", "json:   " + json.getAsJsonObject().getAsString());
         Log.i("TAG", "chega aqui???");
-        if (json.getAsJsonObject().get("deputado") != null){
+        if (json.getAsJsonObject().get("deputado") != null) {
             deputado = json.getAsJsonObject().get("deputado");
         }
 
 
-        return (new Gson().fromJson( deputado, Deputado.class));
+        return (new Gson().fromJson(deputado, Deputado.class));
     }
 }

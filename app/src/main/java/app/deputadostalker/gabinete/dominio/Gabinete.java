@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 /**
  * Created by igormlgomes on 30/04/16.
  */
-public class Gabinete extends RealmObject{
+public class Gabinete extends RealmObject {
     @PrimaryKey
     private int idGabinete;
     private int anexo;

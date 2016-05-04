@@ -25,7 +25,7 @@ public class GoogleSign {
         getConfigDefaultLogin();
     }
 
-    private void getConfigDefaultLogin(){
+    private void getConfigDefaultLogin() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -47,13 +47,13 @@ public class GoogleSign {
         mActivity.startActivityForResult(signInIntent, SIGN_IN);
     }
 
-    public void resultGoogleLogin(int requestCode, int resultCode, Intent data){
-        if (requestCode == SIGN_IN){
-            if (data != null){
+    public void resultGoogleLogin(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SIGN_IN) {
+            if (data != null) {
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-                if (result != null && result.isSuccess()){
+                if (result != null && result.isSuccess()) {
                     googleCallback.getInfoLoginGoogle(result.getSignInAccount());
-                }else{
+                } else {
                     googleCallback.loginFailed();
                 }
             }
@@ -61,9 +61,11 @@ public class GoogleSign {
     }
 
 
-    public interface InfoLoginGoogleCallback{
+    public interface InfoLoginGoogleCallback {
         void getInfoLoginGoogle(GoogleSignInAccount account);
+
         void connectionFailedApiClient(ConnectionResult connectionResult);
+
         void loginFailed();
     }
 
