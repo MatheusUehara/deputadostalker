@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         EMAIL = Session.getUsuarioLogado().getEmail();
         NAME = Session.getUsuarioLogado().getName();
-        USER_IMAGE = Session.getUsuarioLogado().getImageUrl();
+        USER_IMAGE = Session.getUsuarioLogado().getProfileUrl();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mRecyclerView.setHasFixedSize(true);

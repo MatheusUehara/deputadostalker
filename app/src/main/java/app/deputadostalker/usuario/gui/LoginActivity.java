@@ -30,6 +30,7 @@ import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
 import app.deputadostalker.util.Session;
+import io.realm.Realm;
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
 
@@ -39,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     SignInButton signInButton;
     LoginButton loginButton;
+
+    Realm realm;
 
     private void bindViews() {
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
@@ -64,6 +67,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
         this.isFacebookKeyGenerated();
 
+        realm = Realm.getDefaultInstance();
+
         googleSign = new GoogleSign(this, this);
 
         facebookSign = new FacebookSign(this, this);
@@ -81,20 +86,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoLoginGoogle(GoogleSignInAccount account) {
-        Usuario user = new Usuario();
+
+        realm.beginTransaction();
+        Usuario user = realm.createObject(Usuario.class);
         user.setName(account.getDisplayName());
         user.setEmail(account.getEmail());
         user.setId(account.getId());
-        user.setImageUrl(account.getPhotoUrl().toString());
+        user.setProfileUrl(account.getPhotoUrl().toString());
+        user.setId(account.getIdToken());
+        realm.commitTransaction();
         Session.setUsuarioLogado(user);
+
 
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("signed_in_with_google", true);
-        editor.putString("user_google_id", account.getId());
-        editor.putString("user_google_name", account.getDisplayName());
-        editor.putString("user_google_image_url", account.getPhotoUrl().toString());
-        editor.putString("user_google_email", account.getEmail());
+        editor.putBoolean("signed_in", true);
+        editor.putString("user_id", account.getIdToken());
         editor.commit();
 
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
@@ -130,20 +137,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoFace(String id, String name, String email, String photo) {
-        Usuario user = new Usuario();
+        realm.beginTransaction();
+        Usuario user = realm.createObject(Usuario.class);
         user.setName(name);
         user.setEmail(email);
         user.setId(id);
-        user.setImageUrl(photo);
+        user.setProfileUrl(photo);
+        realm.commitTransaction();
         Session.setUsuarioLogado(user);
 
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("signed_in_with_facebook", true);
-        editor.putString("user_facebook_id", id);
-        editor.putString("user_facebook_name", name);
-        editor.putString("user_facebook_image_url", photo);
-        editor.putString("user_facebook_email", email);
+        editor.putBoolean("signed_in", true);
+        editor.putString("user_id", id);
         editor.commit();
 
         Intent i = new Intent(LoginActivity.this, MainActivity.class);
