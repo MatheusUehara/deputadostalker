@@ -31,6 +31,7 @@ import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
 import app.deputadostalker.util.Session;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
 
@@ -86,16 +87,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoLoginGoogle(GoogleSignInAccount account) {
-
-        realm.beginTransaction();
-        Usuario user = realm.createObject(Usuario.class);
-        user.setName(account.getDisplayName());
-        user.setEmail(account.getEmail());
-        user.setId(account.getId());
-        user.setProfileUrl(account.getPhotoUrl().toString());
-        user.setId(account.getIdToken());
-        realm.commitTransaction();
-        Session.setUsuarioLogado(user);
+        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getId()).findAll();
+        if (users.size()>0){
+            Session.setUsuarioLogado(users.get(0));
+        }else {
+            realm.beginTransaction();
+            Usuario user = realm.createObject(Usuario.class);
+            user.setName(account.getDisplayName());
+            user.setEmail(account.getEmail());
+            user.setId(account.getId());
+            user.setProfileUrl(account.getPhotoUrl().toString());
+            user.setId(account.getIdToken());
+            realm.commitTransaction();
+            Session.setUsuarioLogado(user);
+        }
 
 
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
@@ -137,14 +142,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoFace(String id, String name, String email, String photo) {
-        realm.beginTransaction();
-        Usuario user = realm.createObject(Usuario.class);
-        user.setName(name);
-        user.setEmail(email);
-        user.setId(id);
-        user.setProfileUrl(photo);
-        realm.commitTransaction();
-        Session.setUsuarioLogado(user);
+        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",id).findAll();
+        if (users.size()>0){
+            Session.setUsuarioLogado(users.get(0));
+        }else {
+            realm.beginTransaction();
+            Usuario user = realm.createObject(Usuario.class);
+            user.setName(name);
+            user.setEmail(email);
+            user.setId(id);
+            user.setProfileUrl(photo);
+            realm.commitTransaction();
+            Session.setUsuarioLogado(user);
+        }
 
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

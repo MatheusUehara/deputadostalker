@@ -158,17 +158,8 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(DialogInterface dialog, int which) {
                 SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
-                if (pref.getBoolean("signed_in_with_facebook", false)) {
+                if (pref.getBoolean("signed_in", false)) {
                     LoginManager.getInstance().logOut();
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.clear();
-                    editor.commit();
-
-                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
-                    finish();
-                } else if (pref.getBoolean("signed_in_with_google", false)) {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.clear();
                     editor.commit();

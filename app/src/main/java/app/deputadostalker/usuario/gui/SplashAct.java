@@ -39,13 +39,13 @@ public class SplashAct extends Activity implements Runnable {
         handler = new Handler();
         handler.postDelayed(this, 1000);
 
-        realm = Realm.getDefaultInstance();
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(realmConfiguration);
 
+        realm = Realm.getDefaultInstance();
+
         init();
     }
-
 
     private void init() {
         SharedPreferences pref = getPreferences(MODE_PRIVATE);
@@ -53,9 +53,6 @@ public class SplashAct extends Activity implements Runnable {
         if (pref.getInt("flag", 0) == 0) {
             Log.i("LOG", "init()");
             pref.edit().putInt("flag", 1).apply();
-
-
-
 
             try {
 
@@ -106,9 +103,9 @@ public class SplashAct extends Activity implements Runnable {
     @Override
     public void run() {
         SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
-        boolean signedFacebook = pref.getBoolean("signed_in", false);
+        boolean signedIn = pref.getBoolean("signed_in", false);
 
-        if (signedFacebook) {
+        if (signedIn) {
             String id = pref.getString("user_id", "");
             RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",id).findAll();
             Session.setUsuarioLogado(users.get(0));
