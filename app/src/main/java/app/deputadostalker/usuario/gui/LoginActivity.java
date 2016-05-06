@@ -31,14 +31,8 @@ import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
 import app.deputadostalker.util.Session;
 
-//import okhttp3.Request;
-//import retrofit.Response;
-
-
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
-    // retrofit
-    public static final String TAG = "LOG";
-    public static final String API = "http://ec2-54-94-159-58.sa-east-1.compute.amazonaws.com/deputadostalker-rest/";
+
 
     GoogleSign googleSign;
     FacebookSign facebookSign;
@@ -57,7 +51,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
         signInButton.setColorScheme(SignInButton.COLOR_AUTO);
         loginButton = (LoginButton) findViewById(R.id.login_button);
         facebookSign.signInWithFaceButton(loginButton);
-
     }
 
 
@@ -182,77 +175,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
         }
     }
 
-
-    //get deputados... usando retrofit
     @Override
     protected void onResume() {
         super.onResume();
-//Client okhttp funcionando porem ta retornando o html completo.
-        //inicio okhttp
-/*
-        final Client client = new Client();
-        new Thread(){
-            @Override
-        public void run(){
-                super.run();
-
-                try {
-                    String response = client.run("http://ec2-54-94-159-58.sa-east-1.compute.amazonaws.com/deputadostalker-rest/deputado/getDeputados/");
-                    Log.i(TAG,"corpo da mensagem: "+ response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.i(TAG, "request Ok");
-                    }
-                });
-
-
-            }
-        }.start();
-        //final okhttp
-*/
-
-/*
-//TESTE RETROFIT - inicio/
-        //não está funcionando!!!
-        //Gson gson = new GsonBuilder().registerTypeAdapter(Deputado.class, new DeputadoDeserializer()).create();
-        Log.i(TAG, "teste 1");
-        Retrofit retrofit = new Retrofit
-                .Builder()
-                .baseUrl(API)
-                .build();
-
-        final DeputadoApi deputadoAPI = retrofit.create(DeputadoApi.class);
-
-        final Call<List<Deputado>> call = deputadoAPI.getDeputados("getDeputados");
-
-        call.enqueue(new Callback<List<Deputado>>() {
-            @Override
-            public void onResponse(retrofit.Response<List<Deputado>> response, Retrofit retrofit) {
-                Log.i(TAG, "ok a chamada");
-
-                List<Deputado> d = response.body();
-
-                Log.i(TAG, "codigo: " + response.code() );
-                Log.i(TAG, "body: " + response.body() );
-                Log.i(TAG, "messade: " + response.message() );
-                Log.i(TAG, "headers: " + response.headers() );
-                Log.i(TAG, "raw: " + response.raw() );
-                //Log.i(TAG, "response: " + response.toString() );
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.i(TAG, "erro: "+ t.getMessage());
-                Log.i(TAG, "erro: "+ t.getCause());
-            }
-        });
-        // Retrofit- final*/
-
     }
 }
 

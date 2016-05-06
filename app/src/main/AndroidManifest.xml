@@ -30,11 +30,11 @@
         <activity
             android:name=".usuario.gui.MainActivity"
             android:label="Deputado Stalker"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".deputado.gui.PerfilDeputado"
             android:label="Perfil Depudato"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Facebook Config -->
         <meta-data
@@ -55,10 +55,11 @@
             android:value="@integer/google_play_services_version" />
         <!-- Facebook Config END -->
 
-        <activity android:name=".deputado.gui.PesquisaDeputado"
+        <activity
+            android:name=".deputado.gui.PesquisaDeputado"
             android:label="Pesquisa Deputado"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".partido.gui.PartidoActivity" />
     </application>
 
 </manifest>

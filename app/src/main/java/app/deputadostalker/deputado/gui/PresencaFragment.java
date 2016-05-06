@@ -15,9 +15,6 @@ import app.deputadostalker.R;
 //A simple {@link Fragment} subclass.
 
 public class PresencaFragment extends Fragment {
-    public PresencaFragment() {
-        // Required empty public constructor
-    }
 
     CalendarView calendarView;
     TextView dateDisplay;
