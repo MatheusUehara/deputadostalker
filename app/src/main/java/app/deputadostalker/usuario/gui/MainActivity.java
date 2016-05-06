@@ -25,12 +25,10 @@ import com.facebook.login.LoginManager;
 
 import app.deputadostalker.R;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
+import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.util.Session;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String TAG = "LOG";
-    public static final String API = "http://127.0.0.1/deputadostalker-rest/";
 
     public void onBackPressed() {
         logout();
@@ -115,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
                     if (position == 1) {
                         Toast.makeText(MainActivity.this, "Clicou no PERFIL", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity.this, PartidoActivity.class);
+                        startActivity(i);
                     } else if (position == 2) {
                         Toast.makeText(MainActivity.this, "Clicou em CONFIGURAÇÕES", Toast.LENGTH_SHORT).show();
                     } else if (position == 3) {
