@@ -21,6 +21,7 @@ import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.util.Session;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 
 /**
@@ -29,6 +30,7 @@ import io.realm.RealmConfiguration;
 public class SplashAct extends Activity implements Runnable {
 
     private Handler handler;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,10 @@ public class SplashAct extends Activity implements Runnable {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(realmConfiguration);
 
+        realm = Realm.getDefaultInstance();
+
         init();
     }
-
 
     private void init() {
         SharedPreferences pref = getPreferences(MODE_PRIVATE);
@@ -50,9 +53,6 @@ public class SplashAct extends Activity implements Runnable {
         if (pref.getInt("flag", 0) == 0) {
             Log.i("LOG", "init()");
             pref.edit().putInt("flag", 1).apply();
-
-            Realm realm = Realm.getDefaultInstance();
-
 
             try {
 
@@ -81,7 +81,6 @@ public class SplashAct extends Activity implements Runnable {
                 is = assetManager.open("deputado.json");
                 realm.createOrUpdateAllFromJson(Deputado.class, is);
 
-
                 realm.commitTransaction();
 
             } catch (Exception e) {
@@ -104,30 +103,12 @@ public class SplashAct extends Activity implements Runnable {
     @Override
     public void run() {
         SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
-        boolean signedGoogle = pref.getBoolean("signed_in_with_google", false);
-        boolean signedFacebook = pref.getBoolean("signed_in_with_facebook", false);
+        boolean signedIn = pref.getBoolean("signed_in", false);
 
-        if (signedFacebook) {
-            Usuario user = new Usuario();
-            user.setName(pref.getString("user_facebook_name", ""));
-            user.setEmail(pref.getString("user_facebook_email", ""));
-            user.setId(pref.getString("user_facebook_id", ""));
-            user.setImageUrl(pref.getString("user_facebook_image_url", ""));
-            Session.setUsuarioLogado(user);
-
-            Intent it = new Intent(SplashAct.this, MainActivity.class);
-            startActivity(it);
-
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        } else if (signedGoogle) {
-            Usuario user = new Usuario();
-            user.setName(pref.getString("user_google_name", ""));
-            user.setEmail(pref.getString("user_google_email", ""));
-            user.setId(pref.getString("user_google_id", ""));
-            user.setImageUrl(pref.getString("user_google_image_url", ""));
-            Session.setUsuarioLogado(user);
-
+        if (signedIn) {
+            String id = pref.getString("user_id", "");
+            RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",id).findAll();
+            Session.setUsuarioLogado(users.get(0));
             Intent it = new Intent(SplashAct.this, MainActivity.class);
             startActivity(it);
 

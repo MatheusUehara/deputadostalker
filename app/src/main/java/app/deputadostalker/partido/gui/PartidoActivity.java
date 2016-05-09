@@ -28,8 +28,7 @@ public class PartidoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        teste = (TextView) findViewById(R.id.teste);
+        setContentView(R.layout.activity_partido);
     }
 
 
