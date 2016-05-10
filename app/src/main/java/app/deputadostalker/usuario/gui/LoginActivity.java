@@ -53,6 +53,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             }
         });
         signInButton.setColorScheme(SignInButton.COLOR_AUTO);
+
+
         loginButton = (LoginButton) findViewById(R.id.login_button);
         facebookSign.signInWithFaceButton(loginButton);
     }
@@ -87,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoLoginGoogle(GoogleSignInAccount account) {
-        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getId()).findAll();
+        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getIdToken()).findAll();
         if (users.size()>0){
             Session.setUsuarioLogado(users.get(0));
         }else {
@@ -101,7 +103,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             realm.commitTransaction();
             Session.setUsuarioLogado(user);
         }
-
 
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

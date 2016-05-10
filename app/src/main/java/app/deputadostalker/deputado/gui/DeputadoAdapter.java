@@ -75,7 +75,6 @@ public class DeputadoAdapter extends RealmBaseAdapter<Deputado> implements ListA
     }
 
     private static class CustomViewHolder {
-
         CircularNetworkImageView fotoDeputado;
         TextView nomeDeputado;
         TextView partidoDeputado;

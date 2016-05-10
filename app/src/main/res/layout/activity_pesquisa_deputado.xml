@@ -18,6 +18,22 @@
             android:layout_width="match_parent"/>
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Pesquise por: Nome, Partido ou Estado"
+            android:id="@+id/legenda"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp" />
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/busca"
+            android:layout_gravity="center_horizontal"
+            android:queryHint="Nome, Partido ou Estado" />
+
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

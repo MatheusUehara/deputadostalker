@@ -11,6 +11,7 @@ public class Session {
 
     public static Usuario usuarioLogado;
 
+    //TODO retirar o ide da sessao e passar via intent;
     public static String ideCadastroDeputado;
 
     private static Context contexto = null;
