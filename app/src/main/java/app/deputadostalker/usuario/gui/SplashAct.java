@@ -31,64 +31,64 @@ public class SplashAct extends Activity implements Runnable {
 
     private Handler handler;
     private Realm realm;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+
         handler = new Handler();
         handler.postDelayed(this, 1000);
+
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(realmConfiguration);
 
         realm = Realm.getDefaultInstance();
 
-        init();
+        pref = getSharedPreferences("login",Context.MODE_PRIVATE);
+
+        if (pref.getInt("flag",0) == 0) {
+            init();
+        }
     }
 
     private void init() {
-        SharedPreferences pref = getPreferences(MODE_PRIVATE);
+        Log.i("LOG", "Iniciou a base de dados via JSON utilizando o Realm");
+        pref.edit().putInt("flag", 1).apply();
 
-        if (pref.getInt("flag", 0) == 0) {
-            Log.i("LOG", "init()");
-            pref.edit().putInt("flag", 1).apply();
+        try {
+            AssetManager assetManager = getAssets();
+            InputStream is;
+            realm.beginTransaction();
 
-            try {
+        /* Gabinete */
+            is = assetManager.open("gabinete.json");
+            realm.createAllFromJson(Gabinete.class, is);
 
-                AssetManager assetManager = getAssets();
-                InputStream is = null;
+        /* Partido */
+            is = assetManager.open("partido.json");
+            realm.createAllFromJson(Partido.class, is);
 
-                realm.beginTransaction();
+        /* Comissoes */
+            is = assetManager.open("comissoes.json");
+            realm.createOrUpdateAllFromJson(Comissoes.class, is);
 
-            /* Gabinete */
-                is = assetManager.open("gabinete.json");
-                realm.createAllFromJson(Gabinete.class, is);
+        /* ComissoesDeputado */
+            is = assetManager.open("comissoesDeputado.json");
+            realm.createAllFromJson(ComissoesDeputado.class, is);
 
-            /* Partido */
-                is = assetManager.open("partido.json");
-                realm.createAllFromJson(Partido.class, is);
+        /* Deputados */
+            is = assetManager.open("deputado.json");
+            realm.createOrUpdateAllFromJson(Deputado.class, is);
 
-            /* Comissoes */
-                is = assetManager.open("comissoes.json");
-                realm.createOrUpdateAllFromJson(Comissoes.class, is);
+            realm.commitTransaction();
 
-            /* ComissoesDeputado */
-                is = assetManager.open("comissoesDeputado.json");
-                realm.createAllFromJson(ComissoesDeputado.class, is);
-
-            /* Deputados */
-                is = assetManager.open("deputado.json");
-                realm.createOrUpdateAllFromJson(Deputado.class, is);
-
-                realm.commitTransaction();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                realm.cancelTransaction();
-            }
-        } else {
-            Log.i("LOG", "Caiu no else");
+        } catch (Exception e) {
+            e.printStackTrace();
+            realm.cancelTransaction();
         }
     }
 
@@ -99,10 +99,8 @@ public class SplashAct extends Activity implements Runnable {
         handler.removeCallbacks(this);
     }
 
-
     @Override
     public void run() {
-        SharedPreferences pref = getSharedPreferences("login", Context.MODE_PRIVATE);
         boolean signedIn = pref.getBoolean("signed_in", false);
 
         if (signedIn) {
@@ -111,7 +109,6 @@ public class SplashAct extends Activity implements Runnable {
             Session.setUsuarioLogado(users.get(0));
             Intent it = new Intent(SplashAct.this, MainActivity.class);
             startActivity(it);
-
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         } else {

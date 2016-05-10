@@ -3,7 +3,6 @@ package app.deputadostalker.partido.gui;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 
 import com.google.gson.Gson;
@@ -21,9 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PartidoActivity extends AppCompatActivity {
 
-    public static final String TAG = "Partido Activity";
-    public static final String urlBase = "https://deputadostalker-matheusuehara.c9users.io/deputadostalker-rest/";
-    TextView teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class PartidoActivity extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit
                 .Builder()
-                .baseUrl(urlBase)
+                .baseUrl(getString(R.string.urlBase))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -66,17 +62,15 @@ public class PartidoActivity extends AppCompatActivity {
         */
 
         final Call<List<Partido>> callPartidos = partidoAPI.getPartidos();
-
         new Thread(){
             @Override
             public void run() {
                 super.run();
-
                 try {
                     List<Partido> listPartidos = callPartidos.execute().body();
                     if( listPartidos != null ){
                         for( Partido c : listPartidos ){
-                            Log.i(TAG, "Partido: "+c.getNome());
+                            Log.i("Partido Activity", "Partido: "+c.getNome());
                         }
                     }
                 } catch (java.io.IOException e) {
@@ -86,11 +80,10 @@ public class PartidoActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.i(TAG, "Partidos request Ok");
+                        Log.i("Partido Activity", "Partidos request Ok");
                     }
                 });
             }
         }.start();
-
     }
 }
