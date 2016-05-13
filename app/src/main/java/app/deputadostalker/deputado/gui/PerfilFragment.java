@@ -16,13 +16,9 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 import app.deputadostalker.R;
-import app.deputadostalker.comissoes.api.ComissoesAPI;
-import app.deputadostalker.comissoes.api.ComissoesDes;
-import app.deputadostalker.comissoes.dominio.Comissoes;
 import app.deputadostalker.deputado.api.DeputadoAPI;
 import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
-import app.deputadostalker.partido.dominio.Partido;
 import app.deputadostalker.usuario.service.CircularNetworkImageView;
 import app.deputadostalker.usuario.service.CustomVolleyRequest;
 import app.deputadostalker.util.Session;
@@ -53,26 +49,36 @@ public class PerfilFragment extends Fragment {
 
         TextView nomeParlamentar = (TextView) view.findViewById(R.id.nomeParlamentar);
         nomeParlamentar.setText(deputado.getNomeParlamentar());
+
         TextView nomeCivil = (TextView) view.findViewById(R.id.nomeCivil);
         nomeCivil.append(deputado.getNomeCivil());
+
         TextView partido = (TextView) view.findViewById(R.id.partido);
         partido.append(deputado.getPartido_idPartido());
+
         TextView email = (TextView) view.findViewById(R.id.email);
         email.append(deputado.getEmail());
+
         TextView profissao = (TextView) view.findViewById(R.id.profissao);
+
         if (deputado.getNomeProfissao() != null) {
             profissao.append(deputado.getNomeProfissao());
         } else {
             profissao.append("Não informado.");
         }
+
         TextView estado = (TextView) view.findViewById(R.id.ufRepresentacao);
         estado.append(deputado.getUfRepresentacaoAtual());
+
         TextView sexo = (TextView) view.findViewById(R.id.sexo);
         sexo.append(deputado.getSexo());
 
         CircularNetworkImageView fotoDeputado = (CircularNetworkImageView) view.findViewById(R.id.fotoDeputado);
+
         ImageLoader imageLoader;
+
         imageLoader = CustomVolleyRequest.getInstance(view.getContext()).getImageLoader();
+
         imageLoader.get(deputado.getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado,
                         R.mipmap.ic_launcher,

@@ -37,6 +37,15 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1">
             </android.support.v4.view.ViewPager>
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:id="@+id/favorite"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/abc_ic_star_black_16dp"></android.support.design.widget.FloatingActionButton>
         </FrameLayout>
     </LinearLayout>
 
