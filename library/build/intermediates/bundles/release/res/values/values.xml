@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="RealmSearchView"><attr format="reference" name="rsvHint"/><attr format="reference" name="rsvClearDrawable"/><attr format="boolean" name="rsvAddFooter"/><attr format="reference" name="rsvAddFooterText"/></declare-styleable>
-    <string name="rsv_default_search_hint">Search</string>
-</resources>
