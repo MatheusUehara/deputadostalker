@@ -2,11 +2,13 @@ package app.deputadostalker.deputado.gui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,9 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
-
     Toolbar toolbar;
-
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
@@ -57,6 +57,15 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
                 Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        FloatingActionButton favoriteButtom = (FloatingActionButton) findViewById(R.id.favorite);
+
+        favoriteButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PerfilDeputado.this,"CLICOU EM FAVORITAR O DEPUTADO "+Session.getIdeCadastroDeputado(),Toast.LENGTH_LONG).show();
             }
         });
 
