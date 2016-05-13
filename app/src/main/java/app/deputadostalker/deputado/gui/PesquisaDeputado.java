@@ -4,27 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import app.deputadostalker.R;
-import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.usuario.gui.MainActivity;
+import co.moonmonkeylabs.realmsearchview.RealmSearchView;
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
-import io.realm.RealmResults;
 
-public class PesquisaDeputado extends AppCompatActivity{
+public class PesquisaDeputado extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Realm realm;
-    private RealmResults<Deputado> deputados;
-    private RealmChangeListener realmChangeListener;
-    private ListView lvDeputados;
     Toolbar toolbar;
-
-    SearchView busca;
+    DeputadoRecyclerViewAdapter adapter;
+    private String defaultFilter = "nomeParlamentar";
 
 
     @Override
@@ -46,8 +44,6 @@ public class PesquisaDeputado extends AppCompatActivity{
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
 
-        busca = (SearchView) findViewById(R.id.busca);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,56 +53,61 @@ public class PesquisaDeputado extends AppCompatActivity{
             }
         });
 
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_filtro);
+
+        spinner.setOnItemSelectedListener(this);
+
+        List<String> filtros = new ArrayList <String>();
+        filtros.add("NOME");
+        filtros.add("PARTIDO");
+        filtros.add("ESTADO");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, filtros);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(dataAdapter);
+
+        RealmSearchView realmSearchView = (RealmSearchView) findViewById(R.id.busca);
+
         realm = Realm.getDefaultInstance();
+        adapter = new DeputadoRecyclerViewAdapter(this, realm, "nomeParlamentar");
+        realmSearchView.setAdapter(adapter);
 
-        realmChangeListener = new RealmChangeListener() {
-            @Override
-            public void onChange() {
-                ((DeputadoAdapter) lvDeputados.getAdapter()).notifyDataSetChanged();
-            }
-        };
 
-        realm.addChangeListener(realmChangeListener);
-        deputados = realm.where(Deputado.class)
-                .contains("nomeCivil",busca.getQuery().toString())
-                .or()
-                .contains("nomeParlamentar",busca.getQuery().toString())
-                .or()
-                .contains("partido_idPartido",busca.getQuery().toString())
-                .or()
-                .contains("ufRepresentacaoAtual",busca.getQuery().toString())
-                .findAll();
-        lvDeputados = (ListView) findViewById(R.id.listaDeputados);
-        lvDeputados.setAdapter(new DeputadoAdapter(this, realm, deputados, false));
-        setupSearchView();
     }
 
-    private void setupSearchView() {
-        busca.setIconifiedByDefault(false);
-        busca.setSubmitButtonEnabled(true);
-        busca.setQueryHint("Pesquise por: Nome, Partido ou Estado");
-    }
-
-    public boolean onQueryTextSubmit(String query) {
-        deputados = realm.where(Deputado.class)
-                .contains("nomeCivil",busca.getQuery().toString())
-                .or()
-                .contains("nomeParlamentar",busca.getQuery().toString())
-                .or()
-                .contains("partido_idPartido",busca.getQuery().toString())
-                .or()
-                .contains("ufRepresentacaoAtual",busca.getQuery().toString())
-                .findAll();
-        lvDeputados.setAdapter(new DeputadoAdapter(this, realm, deputados, false));
-        return false;
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
     protected void onDestroy() {
-        realm.removeAllChangeListeners();
-        realm.close();
         super.onDestroy();
-
+        if (realm != null) {
+            realm.close();
+            realm = null;
+        }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0:
+                adapter.setFilterKey("nomeParlamentar");
+                break;
+            case 1:
+                adapter.setFilterKey("partido_idPartido");
+                break;
+            case 2:
+                adapter.setFilterKey("ufRepresentacaoAtual");
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 }

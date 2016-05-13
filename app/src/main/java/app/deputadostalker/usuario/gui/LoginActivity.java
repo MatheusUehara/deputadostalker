@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoLoginGoogle(GoogleSignInAccount account) {
-        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getIdToken()).findAll();
+        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getId()).findAll();
         if (users.size()>0){
             Session.setUsuarioLogado(users.get(0));
         }else {
@@ -99,7 +99,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             user.setEmail(account.getEmail());
             user.setId(account.getId());
             user.setProfileUrl(account.getPhotoUrl().toString());
-            user.setId(account.getIdToken());
             realm.commitTransaction();
             Session.setUsuarioLogado(user);
         }
@@ -107,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
         SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean("signed_in", true);
-        editor.putString("user_id", account.getIdToken());
+        editor.putString("user_id", account.getId());
         editor.commit();
 
         Intent i = new Intent(LoginActivity.this, MainActivity.class);

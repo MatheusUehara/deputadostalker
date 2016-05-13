@@ -1,13 +1,19 @@
 package app.deputadostalker.util;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.os.Bundle;
 
+import app.deputadostalker.R;
 import app.deputadostalker.usuario.dominio.Usuario;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by Matheus Uehara on 07/03/2016.
  */
-public class Session {
+public class Session extends Application {
 
     public static Usuario usuarioLogado;
 
