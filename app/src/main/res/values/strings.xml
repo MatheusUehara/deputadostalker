@@ -8,7 +8,7 @@
     <string name="title_activity_register">Registrar</string>
     <string name="title_activity_forgot">Esqueceu a senha</string>
     <string name="urlBase">https://deputadostalker-matheusuehara.c9users.io/deputadostalker-rest/</string>
-
+    <string name="busca_hint">Pesquise por Nome , Estado ou Partido</string>
     <string name="navigation_drawer_open"></string>
     <string name="navigation_drawer_close"></string>
 

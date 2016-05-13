@@ -27,9 +27,8 @@ import io.realm.RealmResults;
 /**
  * Created by Uehara on 16/07/2015.
  */
-public class SplashAct extends Activity implements Runnable {
+public class SplashAct extends Activity{
 
-    private Handler handler;
     private Realm realm;
     private SharedPreferences pref;
 
@@ -38,13 +37,10 @@ public class SplashAct extends Activity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
-        handler = new Handler();
-        handler.postDelayed(this, 1000);
-
-
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfiguration);
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
+                .name("deputado-stalker.realm")
+                .build();
+        Realm.setDefaultConfiguration( realmConfiguration );
 
         realm = Realm.getDefaultInstance();
 
@@ -53,6 +49,7 @@ public class SplashAct extends Activity implements Runnable {
         if (pref.getInt("flag",0) == 0) {
             init();
         }
+        checkLogin();
     }
 
     private void init() {
@@ -93,14 +90,7 @@ public class SplashAct extends Activity implements Runnable {
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        handler.removeCallbacks(this);
-    }
-
-    @Override
-    public void run() {
+    public void checkLogin() {
         boolean signedIn = pref.getBoolean("signed_in", false);
 
         if (signedIn) {

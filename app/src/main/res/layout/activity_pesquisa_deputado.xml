@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/DrawerLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:elevation="7dp">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,42 +16,19 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Pesquise por: Nome, Partido ou Estado"
-            android:id="@+id/legenda"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp" />
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/busca"
-            android:layout_gravity="center_horizontal"
-            android:queryHint="Nome, Partido ou Estado" />
-
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
-
-        <LinearLayout
-            android:orientation="vertical"
+        <!-- Spinner Element -->
+        <Spinner
+            android:id="@+id/spinner_filtro"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:layout_height="wrap_content"
+            />
 
-            <ListView
-                android:id="@+id/listaDeputados"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
-            </ListView>
-        </LinearLayout>
+        <co.moonmonkeylabs.realmsearchview.RealmSearchView
+            android:id="@+id/busca"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:rsvHint="@string/busca_hint"
+            />
     </LinearLayout>
-</android.support.v4.widget.DrawerLayout>
+
+</FrameLayout>

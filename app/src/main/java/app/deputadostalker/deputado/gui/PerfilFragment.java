@@ -56,7 +56,7 @@ public class PerfilFragment extends Fragment {
         TextView nomeCivil = (TextView) view.findViewById(R.id.nomeCivil);
         nomeCivil.append(deputado.getNomeCivil());
         TextView partido = (TextView) view.findViewById(R.id.partido);
-        partido.append(deputado.getPartido());
+        partido.append(deputado.getPartido_idPartido());
         TextView email = (TextView) view.findViewById(R.id.email);
         email.append(deputado.getEmail());
         TextView profissao = (TextView) view.findViewById(R.id.profissao);

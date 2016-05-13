@@ -27,6 +27,14 @@ public class Deputado extends RealmObject {
     private int gabinete_idGabinete;
     private String partido_idPartido;
 
+    public String getIdeCadastro() {
+        return ideCadastro;
+    }
+
+    public void setIdeCadastro(String ideCadastro) {
+        this.ideCadastro = ideCadastro;
+    }
+
     public int getMatricula() {
         return matricula;
     }
@@ -41,6 +49,14 @@ public class Deputado extends RealmObject {
 
     public void setIdParlamentar(int idParlamentar) {
         this.idParlamentar = idParlamentar;
+    }
+
+    public String getNomeCivil() {
+        return nomeCivil;
+    }
+
+    public void setNomeCivil(String nomeCivil) {
+        this.nomeCivil = nomeCivil;
     }
 
     public String getNomeParlamentar() {
@@ -59,52 +75,12 @@ public class Deputado extends RealmObject {
         this.urlFoto = urlFoto;
     }
 
-    public int getIdGabinete() {
-        return gabinete_idGabinete;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setIdGabinete(Gabinete idGabinete) {
-        this.gabinete_idGabinete = idGabinete.getIdGabinete();
-    }
-
-    public String getPartido() {
-        return partido_idPartido;
-    }
-
-    public void setPartido(app.deputadostalker.partido.dominio.Partido partido) {
-        this.partido_idPartido = partido.getIdPartido();
-    }
-
-    public String getIdeCadastro() {
-        return ideCadastro;
-    }
-
-    public void setIdeCadastro(String ideCadastro) {
-        this.ideCadastro = ideCadastro;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNomeProfissao() {
-        return nomeProfissao;
-    }
-
-    public void setNomeProfissao(String nomeProfissao) {
-        this.nomeProfissao = nomeProfissao;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getUfRepresentacaoAtual() {
@@ -115,6 +91,30 @@ public class Deputado extends RealmObject {
         this.ufRepresentacaoAtual = ufRepresentacaoAtual;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getNomeProfissao() {
+        return nomeProfissao;
+    }
+
+    public void setNomeProfissao(String nomeProfissao) {
+        this.nomeProfissao = nomeProfissao;
+    }
+
     public String getSituacaoNaLegislaturaAtual() {
         return situacaoNaLegislaturaAtual;
     }
@@ -123,20 +123,19 @@ public class Deputado extends RealmObject {
         this.situacaoNaLegislaturaAtual = situacaoNaLegislaturaAtual;
     }
 
-    public String getNomeCivil() {
-        return nomeCivil;
+    public int getGabinete_idGabinete() {
+        return gabinete_idGabinete;
     }
 
-    public void setNomeCivil(String nomeCivil) {
-        this.nomeCivil = nomeCivil;
+    public void setGabinete_idGabinete(int gabinete_idGabinete) {
+        this.gabinete_idGabinete = gabinete_idGabinete;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getPartido_idPartido() {
+        return partido_idPartido;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setPartido_idPartido(String partido_idPartido) {
+        this.partido_idPartido = partido_idPartido;
     }
-
 }

@@ -9,11 +9,11 @@ import io.realm.annotations.PrimaryKey;
 public class Usuario extends RealmObject {
 
     @PrimaryKey
-    String id;
-    String name;
-    String profileUrl;
-    String email;
-    String senha;
+    private String id;
+    private String name;
+    private String profileUrl;
+    private String email;
+    private String senha;
 
     public String getEmail() {
         return this.email;

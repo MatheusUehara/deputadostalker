@@ -7,8 +7,8 @@ import io.realm.RealmObject;
  */
 public class ComissoesDeputado extends RealmObject {
 
-    int orgao_idOrgao;
-    int deputado_ideCadastro;
+    private int orgao_idOrgao;
+    private int deputado_ideCadastro;
 
     public int getOrgao_idOrgao() {
         return orgao_idOrgao;
