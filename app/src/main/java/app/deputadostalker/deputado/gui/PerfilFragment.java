@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -43,28 +44,30 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+        ListView list = (ListView) view.findViewById(R.id.comissoes);
+
         RealmResults<Deputado> deputados;
         RealmResults<Comissoes> comissao;
         RealmResults<ComissoesDeputado> comissaoDeputado;
         ArrayList<RealmResults<Comissoes>> comissoes = new ArrayList<>();
 
+
         Deputado deputado;
 
         Realm realm = Realm.getDefaultInstance();
         deputados = realm.where(Deputado.class)
-                .contains("ideCadastro", Session.getIdeCadastroDeputado())
+                .equalTo("ideCadastro", Session.getIdeCadastroDeputado())
                 .findAll();
 
         deputado = deputados.get(0);
 
-        comissaoDeputado = realm.where(ComissoesDeputado.class).contains("deputado_ideCadastro",deputado.getIdeCadastro()).findAll();
+        comissaoDeputado = realm.where(ComissoesDeputado.class).equalTo("deputado_ideCadastro", deputado.getIdeCadastro()).findAll();
+
 
         for (ComissoesDeputado i:comissaoDeputado){
             comissao = realm.where(Comissoes.class).contains("idOrgao", String.valueOf(i.getOrgao_idOrgao())).findAll();
             comissoes.add(comissao);
-            Log.d("COMISSÃO : ",comissao.get(0).getNomeComissao());
         }
-
 
         TextView nomeParlamentar = (TextView) view.findViewById(R.id.nomeParlamentar);
         nomeParlamentar.setText(deputado.getNomeParlamentar());

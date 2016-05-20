@@ -33,7 +33,7 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Session.setIdeCadastroDeputado("");
+        Session.setIdeCadastroDeputado(0);
         Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
         startActivity(i);
         finish();
@@ -53,7 +53,7 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Session.setIdeCadastroDeputado("");
+                Session.setIdeCadastroDeputado(0);
                 Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
                 startActivity(i);
                 finish();

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 
 import app.deputadostalker.R;
 import app.deputadostalker.usuario.dominio.Usuario;
@@ -18,15 +19,15 @@ public class Session extends Application {
     public static Usuario usuarioLogado;
 
     //TODO retirar o ide da sessao e passar via intent;
-    public static String ideCadastroDeputado;
+    public static int ideCadastroDeputado;
 
     private static Context contexto = null;
 
-    public static String getIdeCadastroDeputado() {
+    public static int getIdeCadastroDeputado() {
         return ideCadastroDeputado;
     }
 
-    public static void setIdeCadastroDeputado(String ideCadastroDeputado) {
+    public static void setIdeCadastroDeputado(int ideCadastroDeputado) {
         Session.ideCadastroDeputado = ideCadastroDeputado;
     }
 
@@ -45,4 +46,5 @@ public class Session extends Application {
     public static Context getContexto() {
         return contexto;
     }
+
 }
