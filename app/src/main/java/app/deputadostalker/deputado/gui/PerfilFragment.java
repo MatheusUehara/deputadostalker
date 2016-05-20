@@ -13,9 +13,12 @@ import com.android.volley.toolbox.ImageLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.deputadostalker.R;
+import app.deputadostalker.comissoes.dominio.Comissoes;
+import app.deputadostalker.comissoes.dominio.ComissoesDeputado;
 import app.deputadostalker.deputado.api.DeputadoAPI;
 import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
@@ -33,19 +36,35 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PerfilFragment extends Fragment {
 
-    private RealmResults<Deputado> deputados;
-    private Deputado deputado;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
+        RealmResults<Deputado> deputados;
+        RealmResults<Comissoes> comissao;
+        RealmResults<ComissoesDeputado> comissaoDeputado;
+        ArrayList<RealmResults<Comissoes>> comissoes = new ArrayList<>();
+
+        Deputado deputado;
+
         Realm realm = Realm.getDefaultInstance();
         deputados = realm.where(Deputado.class)
                 .contains("ideCadastro", Session.getIdeCadastroDeputado())
                 .findAll();
+
         deputado = deputados.get(0);
+
+        comissaoDeputado = realm.where(ComissoesDeputado.class).contains("deputado_ideCadastro",deputado.getIdeCadastro()).findAll();
+
+        for (ComissoesDeputado i:comissaoDeputado){
+            comissao = realm.where(Comissoes.class).contains("idOrgao", String.valueOf(i.getOrgao_idOrgao())).findAll();
+            comissoes.add(comissao);
+            Log.d("COMISSÃO : ",comissao.get(0).getNomeComissao());
+        }
+
 
         TextView nomeParlamentar = (TextView) view.findViewById(R.id.nomeParlamentar);
         nomeParlamentar.setText(deputado.getNomeParlamentar());
@@ -85,7 +104,7 @@ public class PerfilFragment extends Fragment {
                         R.mipmap.ic_launcher));
         fotoDeputado.setImageUrl(deputado.getUrlFoto(), imageLoader);
 
-        testeReq();
+        //testeReq();
         return view;
 
     }
