@@ -6,23 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.List;
-
 import app.deputadostalker.R;
-import app.deputadostalker.deputado.api.DeputadoAPI;
-import app.deputadostalker.deputado.api.DeputadoDes;
-import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.util.Session;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 

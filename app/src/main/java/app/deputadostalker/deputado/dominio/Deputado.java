@@ -13,7 +13,6 @@ public class Deputado extends RealmObject {
 
     @PrimaryKey
     private int ideCadastro;
-
     private int matricula;
     private int idParlamentar;
     private String nomeCivil;

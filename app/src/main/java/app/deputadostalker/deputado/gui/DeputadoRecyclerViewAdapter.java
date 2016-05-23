@@ -14,7 +14,7 @@ import co.moonmonkeylabs.realmsearchview.RealmSearchAdapter;
 import co.moonmonkeylabs.realmsearchview.RealmSearchViewHolder;
 
 import io.realm.Realm;
-import io.realm.RealmViewHolder;
+
 
 /**
  * Created by matheusuehara on 04/05/16.

@@ -1,11 +1,20 @@
 package app.deputadostalker.usuario.service;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import app.deputadostalker.usuario.dao.UsuarioDAO;
+import app.deputadostalker.usuario.dominio.Usuario;
+import io.realm.Realm;
+
 /**
  * Created by Matheus Uehara on 07/03/2016.
  */
 public class UsuarioService {
 
     private static final UsuarioService instance = new UsuarioService();
+
+    UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
 
     private UsuarioService() {
         super();
@@ -15,17 +24,19 @@ public class UsuarioService {
         return instance;
     }
 
-    public static boolean isEmailValid(String email) {
-        //TODO change for your own logic
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
+    public void iniciaBase(SharedPreferences pref , Context ctx){
+        usuarioDAO.init(pref,ctx);
     }
 
-    public static boolean isPasswordValid(String password) {
-        //TODO change for your own logic
-        //Não seria melhor com 6?
-        return password.length() > 4;
+    public boolean insereUsuario(Usuario usuario){
+        return usuarioDAO.insereUsuario(usuario);
+    }
+
+    public void iniciaBase(Context ctx){
+        usuarioDAO.init(ctx);
+    }
+
+    public Usuario getUsuario(String idUsuario){
+        return usuarioDAO.getUsuario(idUsuario);
     }
 }

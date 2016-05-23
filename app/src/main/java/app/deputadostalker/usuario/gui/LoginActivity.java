@@ -29,9 +29,8 @@ import app.deputadostalker.R;
 import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
+import app.deputadostalker.usuario.service.UsuarioService;
 import app.deputadostalker.util.Session;
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
 
@@ -42,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
     SignInButton signInButton;
     LoginButton loginButton;
 
-    Realm realm;
+    UsuarioService service = UsuarioService.getInstance();
 
     private void bindViews() {
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
@@ -53,7 +52,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             }
         });
         signInButton.setColorScheme(SignInButton.COLOR_AUTO);
-
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         facebookSign.signInWithFaceButton(loginButton);
@@ -69,8 +67,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
         image.setImageResource(R.mipmap.ic_launcher);
 
         this.isFacebookKeyGenerated();
-
-        realm = Realm.getDefaultInstance();
 
         googleSign = new GoogleSign(this, this);
 
@@ -89,28 +85,23 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoLoginGoogle(GoogleSignInAccount account) {
-        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",account.getId()).findAll();
-        if (users.size()>0){
-            Session.setUsuarioLogado(users.get(0));
+        Usuario verificaCadastrado = service.getUsuario(account.getId());
+        if (verificaCadastrado.getNome() != null ){
+            Session.setUsuarioLogado(verificaCadastrado);
+            goMainActivity(verificaCadastrado.getId());
         }else {
-            realm.beginTransaction();
-            Usuario user = realm.createObject(Usuario.class);
-            user.setName(account.getDisplayName());
+            Usuario user = new Usuario();
+            user.setNome(account.getDisplayName());
             user.setEmail(account.getEmail());
             user.setId(account.getId());
             user.setProfileUrl(account.getPhotoUrl().toString());
-            realm.commitTransaction();
-            Session.setUsuarioLogado(user);
+            if (service.insereUsuario(user)){
+                Session.setUsuarioLogado(user);
+                goMainActivity(user.getId());
+            }else{
+                Toast.makeText(this,"Falha no Cadastro",Toast.LENGTH_SHORT).show();
+            }
         }
-
-        SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("signed_in", true);
-        editor.putString("user_id", account.getId());
-        editor.commit();
-
-        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(i);
     }
 
     @Override
@@ -142,28 +133,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     @Override
     public void getInfoFace(String id, String name, String email, String photo) {
-        RealmResults<Usuario> users = realm.where(Usuario.class).equalTo("id",id).findAll();
-        if (users.size()>0){
-            Session.setUsuarioLogado(users.get(0));
+        Usuario verificaCadastrado = service.getUsuario(id);
+        if (verificaCadastrado.getNome() != null ){
+            Session.setUsuarioLogado(verificaCadastrado);
+            goMainActivity(verificaCadastrado.getId());
         }else {
-            realm.beginTransaction();
-            Usuario user = realm.createObject(Usuario.class);
-            user.setName(name);
+            Usuario user = new Usuario();
+            user.setNome(name);
             user.setEmail(email);
             user.setId(id);
             user.setProfileUrl(photo);
-            realm.commitTransaction();
-            Session.setUsuarioLogado(user);
+
+            if (service.insereUsuario(user)){
+                Session.setUsuarioLogado(user);
+                goMainActivity(user.getId());
+            }else{
+                Toast.makeText(this,"Falha no Cadastro",Toast.LENGTH_SHORT).show();
+            }
         }
-
-        SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("signed_in", true);
-        editor.putString("user_id", id);
-        editor.commit();
-
-        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(i);
     }
 
     @Override
@@ -194,6 +181,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void goMainActivity(String userId){
+        SharedPreferences sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("signed_in", true);
+        editor.putString("user_id", userId);
+        editor.commit();
+
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(i);
     }
 }
 

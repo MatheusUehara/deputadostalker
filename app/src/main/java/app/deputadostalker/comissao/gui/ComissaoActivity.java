@@ -1,4 +1,4 @@
-package app.deputadostalker.comissoes.gui;
+package app.deputadostalker.comissao.gui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +10,9 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 import app.deputadostalker.R;
-import app.deputadostalker.comissoes.api.ComissoesAPI;
-import app.deputadostalker.comissoes.api.ComissoesDes;
-import app.deputadostalker.comissoes.dominio.Comissoes;
+import app.deputadostalker.comissao.api.ComissaoAPI;
+import app.deputadostalker.comissao.api.ComissaoDes;
+import app.deputadostalker.comissao.dominio.Comissao;
 import app.deputadostalker.partido.dominio.Partido;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by igormlgomes on 10/05/16.
  */
-public class ComissoesActivity extends AppCompatActivity {
+public class ComissaoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class ComissoesActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(Partido.class ,new ComissoesDes()).create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Partido.class ,new ComissaoDes()).create();
 
         Retrofit retrofit = new Retrofit
                 .Builder()
@@ -42,18 +42,18 @@ public class ComissoesActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        ComissoesAPI comissoesAPI = retrofit.create(ComissoesAPI.class);
+        ComissaoAPI comissoesAPI = retrofit.create(ComissaoAPI.class);
 
 
-        final Call<List<Comissoes>> callComissoes = comissoesAPI.getComissoes();
+        final Call<List<Comissao>> callComissoes = comissoesAPI.getComissoes();
         new Thread(){
             @Override
             public void run() {
                 super.run();
                 try {
-                    List<Comissoes> listComissoes = callComissoes.execute().body();
+                    List<Comissao> listComissoes = callComissoes.execute().body();
                     if( listComissoes != null ){
-                        for( Comissoes c : listComissoes ){
+                        for( Comissao c : listComissoes ){
                             Log.i("Comissoes Activity", "Comissoes: "+c.getNomeComissao());
                         }
                     }
