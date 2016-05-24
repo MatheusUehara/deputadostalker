@@ -71,7 +71,8 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new PerfilFragment(), "Perfil");
-        adapter.addFrag(new PresencaFragment(), "Presenças");
+        adapter.addFrag(new ComissaoFragment(),"Comissoes");
+        adapter.addFrag(new FrequenciaFragment(), "Frequência");
         adapter.addFrag(new ProposicaoDeputado(), "Proposições");
         viewPager.setAdapter(adapter);
     }

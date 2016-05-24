@@ -7,19 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import app.deputadostalker.R;
-import app.deputadostalker.comissao.dominio.Comissao;
-import app.deputadostalker.comissao.gui.ComissaoAdapter;
-import app.deputadostalker.comissao.service.ComissaoService;
 import app.deputadostalker.deputado.api.DeputadoAPI;
 import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
@@ -35,23 +30,9 @@ public class PerfilFragment extends Fragment {
 
     DeputadoService service = DeputadoService.getInstance();
 
-    ComissaoService comissaoService = ComissaoService.getInstance();
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
-
-
-        ListView list = (ListView) view.findViewById(R.id.comissoes);
-
-        ArrayList<Comissao> comissoes = comissaoService.getComissoes(Session.getIdeCadastroDeputado());
-
-        Log.d("NUMERO DE COMISSOES " , String.valueOf(comissoes.size()));
-
-        ComissaoAdapter comissaoAdapter = new ComissaoAdapter(getContext(), comissoes);
-        list.setAdapter(comissaoAdapter);
-
 
         Deputado deputado = service.getDeputado(Session.getIdeCadastroDeputado());
 
