@@ -6,30 +6,18 @@
     tools:context="app.deputadostalker.deputado.gui.PresencaFragment"
     android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PRESENÇAS DO DEPUTADO"
-            android:textAlignment="center" />
-
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/date_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Data: "
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextSwitcher
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textSwitcher" />
-
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

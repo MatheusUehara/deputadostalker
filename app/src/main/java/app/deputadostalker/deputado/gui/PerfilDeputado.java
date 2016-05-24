@@ -6,23 +6,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.List;
-
 import app.deputadostalker.R;
-import app.deputadostalker.deputado.api.DeputadoAPI;
-import app.deputadostalker.deputado.api.DeputadoDes;
-import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.util.Session;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
@@ -33,7 +21,7 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Session.setIdeCadastroDeputado("");
+        Session.setIdeCadastroDeputado(0);
         Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
         startActivity(i);
         finish();
@@ -53,7 +41,7 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Session.setIdeCadastroDeputado("");
+                Session.setIdeCadastroDeputado(0);
                 Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
                 startActivity(i);
                 finish();
@@ -83,7 +71,8 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new PerfilFragment(), "Perfil");
-        adapter.addFrag(new PresencaFragment(), "Presenças");
+        adapter.addFrag(new ComissaoFragment(),"Comissoes");
+        adapter.addFrag(new FrequenciaFragment(), "Frequência");
         adapter.addFrag(new ProposicaoDeputado(), "Proposições");
         viewPager.setAdapter(adapter);
     }

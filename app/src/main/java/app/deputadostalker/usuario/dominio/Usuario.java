@@ -10,7 +10,7 @@ public class Usuario extends RealmObject {
 
     @PrimaryKey
     private String id;
-    private String name;
+    private String nome;
     private String profileUrl;
     private String email;
     private String senha;
@@ -31,12 +31,12 @@ public class Usuario extends RealmObject {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
     public String getProfileUrl() {

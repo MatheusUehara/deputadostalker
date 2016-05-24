@@ -1,20 +1,20 @@
-package app.deputadostalker.comissoes.dominio;
+package app.deputadostalker.comissao.dominio;
 
 import io.realm.RealmObject;
 
 /**
  * Created by igormlgomes on 01/05/16.
  */
-public class ComissoesDeputado extends RealmObject {
+public class ComissaoDeputado extends RealmObject {
 
-    private int orgao_idOrgao;
+    private String orgao_idOrgao;
     private int deputado_ideCadastro;
 
-    public int getOrgao_idOrgao() {
+    public String getOrgao_idOrgao() {
         return orgao_idOrgao;
     }
 
-    public void setOrgao_idOrgao(int orgao_idOrgao) {
+    public void setOrgao_idOrgao(String orgao_idOrgao) {
         this.orgao_idOrgao = orgao_idOrgao;
     }
 

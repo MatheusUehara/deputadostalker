@@ -12,7 +12,7 @@ import io.realm.annotations.PrimaryKey;
 public class Deputado extends RealmObject {
 
     @PrimaryKey
-    private String ideCadastro;
+    private int ideCadastro;
     private int matricula;
     private int idParlamentar;
     private String nomeCivil;
@@ -27,11 +27,19 @@ public class Deputado extends RealmObject {
     private int gabinete_idGabinete;
     private String partido_idPartido;
 
-    public String getIdeCadastro() {
+    public String getPartido_idPartido() {
+        return partido_idPartido;
+    }
+
+    public void setPartido_idPartido(String partido_idPartido) {
+        this.partido_idPartido = partido_idPartido;
+    }
+
+    public int getIdeCadastro() {
         return ideCadastro;
     }
 
-    public void setIdeCadastro(String ideCadastro) {
+    public void setIdeCadastro(int ideCadastro) {
         this.ideCadastro = ideCadastro;
     }
 
@@ -129,13 +137,5 @@ public class Deputado extends RealmObject {
 
     public void setGabinete_idGabinete(int gabinete_idGabinete) {
         this.gabinete_idGabinete = gabinete_idGabinete;
-    }
-
-    public String getPartido_idPartido() {
-        return partido_idPartido;
-    }
-
-    public void setPartido_idPartido(String partido_idPartido) {
-        this.partido_idPartido = partido_idPartido;
     }
 }

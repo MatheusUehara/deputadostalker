@@ -1,12 +1,13 @@
-package app.deputadostalker.comissoes.dominio;
+package app.deputadostalker.comissao.dominio;
 
+import io.realm.RealmModel;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by igormlgomes on 30/04/16.
  */
-public class Comissoes extends RealmObject {
+public class Comissao extends RealmObject implements RealmModel{
 
     @PrimaryKey
     private String idOrgao;

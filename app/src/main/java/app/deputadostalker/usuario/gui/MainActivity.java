@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     public void davDrawer() {
 
         EMAIL = Session.getUsuarioLogado().getEmail();
-        NAME = Session.getUsuarioLogado().getName();
+        NAME = Session.getUsuarioLogado().getNome();
         USER_IMAGE = Session.getUsuarioLogado().getProfileUrl();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);

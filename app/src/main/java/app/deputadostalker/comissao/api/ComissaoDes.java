@@ -1,4 +1,4 @@
-package app.deputadostalker.comissoes.api;
+package app.deputadostalker.comissao.api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
@@ -13,7 +13,7 @@ import app.deputadostalker.partido.dominio.Partido;
 /**
  * Created by igormlgomes on 10/05/16.
  */
-public class ComissoesDes implements JsonDeserializer<Object> {
+public class ComissaoDes implements JsonDeserializer<Object> {
 
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
