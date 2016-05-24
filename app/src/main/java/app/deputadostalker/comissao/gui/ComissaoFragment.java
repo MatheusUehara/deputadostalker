@@ -1,4 +1,4 @@
-package app.deputadostalker.deputado.gui;
+package app.deputadostalker.comissao.gui;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

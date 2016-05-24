@@ -1,4 +1,4 @@
-package app.deputadostalker.deputado.gui;
+package app.deputadostalker.frequencia.gui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

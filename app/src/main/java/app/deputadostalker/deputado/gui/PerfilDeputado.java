@@ -6,9 +6,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import app.deputadostalker.R;
+import app.deputadostalker.comissao.gui.ComissaoFragment;
+import app.deputadostalker.deputado.dominio.*;
+import app.deputadostalker.deputado.service.DeputadoService;
+import app.deputadostalker.frequencia.gui.FrequenciaFragment;
 import app.deputadostalker.util.Session;
 
 
@@ -18,6 +23,8 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
+
+    DeputadoService service = DeputadoService.getInstance();
 
     @Override
     public void onBackPressed() {
@@ -50,12 +57,27 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
 
         FloatingActionButton favoriteButtom = (FloatingActionButton) findViewById(R.id.favorite);
 
-        favoriteButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(PerfilDeputado.this,"CLICOU EM FAVORITAR O DEPUTADO "+Session.getIdeCadastroDeputado(),Toast.LENGTH_LONG).show();
-            }
-        });
+        if (favoriteButtom != null) {
+            favoriteButtom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        DeputadoFavorito deputado = new DeputadoFavorito();
+                        deputado.setIdUsuario(Session.getUsuarioLogado().getId());
+                        deputado.setIdeCadastro(Session.getIdeCadastroDeputado());
+                        Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
+
+                        if (service.insertDeputadoFavorito(deputado)) {
+                            Toast.makeText(PerfilDeputado.this, "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(PerfilDeputado.this, "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
+                        }
+                    }catch (RuntimeException e){
+                        Toast.makeText(PerfilDeputado.this, "LOUCURA", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
 
     }
 

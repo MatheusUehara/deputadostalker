@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="70dip"
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip"
+    android:orientation="vertical">
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -17,7 +21,7 @@
                 android:id="@+id/urlFoto"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-            ></app.deputadostalker.usuario.service.CircularNetworkImageView>
+                ></app.deputadostalker.usuario.service.CircularNetworkImageView>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -45,6 +49,4 @@
         android:layout_height="1dp"
         android:background="#CFCFCF"
         android:layout_alignParentBottom="true"
-        />
-
-</merge>
+        /></LinearLayout>

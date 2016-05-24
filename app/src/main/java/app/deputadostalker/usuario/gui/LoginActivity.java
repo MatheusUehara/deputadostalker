@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             user.setNome(account.getDisplayName());
             user.setEmail(account.getEmail());
             user.setId(account.getId());
+            user.setRedeSocial("GOOGLE+");
             user.setProfileUrl(account.getPhotoUrl().toString());
             if (service.insereUsuario(user)){
                 Session.setUsuarioLogado(user);
@@ -141,6 +142,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             Usuario user = new Usuario();
             user.setNome(name);
             user.setEmail(email);
+            user.setRedeSocial("FACEBOOK");
             user.setId(id);
             user.setProfileUrl(photo);
 

@@ -13,7 +13,24 @@ public class Usuario extends RealmObject {
     private String nome;
     private String profileUrl;
     private String email;
-    private String senha;
+    private String redeSocial;
+    private String idTokenPush;
+
+    public String getRedeSocial() {
+        return redeSocial;
+    }
+
+    public void setRedeSocial(String redeSocial) {
+        this.redeSocial = redeSocial;
+    }
+
+    public String getIdTokenPush() {
+        return idTokenPush;
+    }
+
+    public void setIdTokenPush(String idTokenPush) {
+        this.idTokenPush = idTokenPush;
+    }
 
     public String getEmail() {
         return this.email;
@@ -45,14 +62,6 @@ public class Usuario extends RealmObject {
 
     public void setProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
 

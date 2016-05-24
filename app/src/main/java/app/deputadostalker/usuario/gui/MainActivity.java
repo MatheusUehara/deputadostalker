@@ -24,6 +24,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.gui.DeputadoFavoritoActivity;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
 import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.util.Session;
@@ -53,13 +54,22 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(MainActivity.this);
         setContentView(R.layout.activity_main);
 
-        Button b = (Button) findViewById(R.id.pesquisa_deputado);
-        b.setOnClickListener(new View.OnClickListener() {
+        Button pesquisa = (Button) findViewById(R.id.pesquisa_deputado);
+        pesquisa.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, PesquisaDeputado.class);
                 startActivity(i);
             }
         });
+
+        Button favorito = (Button) findViewById(R.id.deputado_favorito);
+        favorito.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, DeputadoFavoritoActivity.class);
+                startActivity(i);
+            }
+        });
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         davDrawer();
     }
 
-    public void davDrawer() {
 
+    public void davDrawer() {
         EMAIL = Session.getUsuarioLogado().getEmail();
         NAME = Session.getUsuarioLogado().getNome();
         USER_IMAGE = Session.getUsuarioLogado().getProfileUrl();
