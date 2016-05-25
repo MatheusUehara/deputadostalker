@@ -16,9 +16,10 @@ import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.frequencia.gui.FrequenciaFragment;
 import app.deputadostalker.util.Session;
 import io.realm.exceptions.RealmIOException;
+import android.support.v7.app.AppCompatActivity;
 
 
-public class PerfilDeputado extends android.support.v7.app.AppCompatActivity{
+public class PerfilDeputado extends AppCompatActivity{
 
     Toolbar toolbar;
     ViewPager pager;

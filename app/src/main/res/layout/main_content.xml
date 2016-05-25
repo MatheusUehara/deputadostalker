@@ -20,7 +20,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/img_deputado_1"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
+                            android:onClick="onClickDeputado0"
                             android:layout_weight="0.20">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
