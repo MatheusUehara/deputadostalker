@@ -36,8 +36,6 @@ public class SplashAct extends AppCompatActivity{
         checkLogin();
     }
 
-
-
     public void checkLogin() {
 
         boolean signedIn = pref.getBoolean("signed_in", false);

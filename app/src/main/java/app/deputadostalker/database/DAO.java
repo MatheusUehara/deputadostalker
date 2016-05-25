@@ -19,11 +19,6 @@ public abstract class DAO {
         Realm.setDefaultConfiguration( realmConfiguration );
     }
 
-
-    public void setContextUp(Context context) {
-        setContext(context);
-    }
-
     public Context getContext() {
         return context;
     }

@@ -35,11 +35,13 @@ public class FrequenciaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_presenca, container, false);
 
         calendarView = (CalendarView) view.findViewById(R.id.calendarView);
 
         dateDisplay = (TextView) view.findViewById(R.id.date_display);
+
         dateDisplay.setText("Data: ");
 
 
@@ -56,6 +58,7 @@ public class FrequenciaFragment extends Fragment {
                 month += 1;
 
                 getFrequencia(day + "-" + month + "-" + year, day + "-" + month + "-" + year, matricula , listaFrequencia);
+
                 dateDisplay.setText("Data: " + day + " / " + month + " / " + year );
             }
         });

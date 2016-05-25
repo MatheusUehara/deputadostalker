@@ -6,11 +6,8 @@ import app.deputadostalker.database.DAO;
 import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.usuario.dominio.Usuario;
-import app.deputadostalker.util.Session;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import io.realm.exceptions.RealmException;
-import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
 /**
  * Created by Matheus Uehara on 22/05/2016.
@@ -24,6 +21,7 @@ public class DeputadoDAO extends DAO {
     private DeputadoDAO() {
         super();
     }
+
     public static DeputadoDAO getInstance() {
         return instance;
     }

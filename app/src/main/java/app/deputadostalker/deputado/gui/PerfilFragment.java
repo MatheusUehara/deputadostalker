@@ -1,12 +1,15 @@
 package app.deputadostalker.deputado.gui;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.toolbox.ImageLoader;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,10 +20,12 @@ import app.deputadostalker.R;
 import app.deputadostalker.deputado.api.DeputadoAPI;
 import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
+import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.usuario.service.CircularNetworkImageView;
 import app.deputadostalker.usuario.service.CustomVolleyRequest;
 import app.deputadostalker.util.Session;
+import io.realm.exceptions.RealmIOException;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -73,8 +78,10 @@ public class PerfilFragment extends Fragment {
                         R.mipmap.ic_launcher));
         fotoDeputado.setImageUrl(deputado.getUrlFoto(), imageLoader);
 
-        return view;
+/*
 
+*/
+        return view;
     }
 
 

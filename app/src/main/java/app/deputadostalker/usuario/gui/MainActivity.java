@@ -19,13 +19,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
-
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.deputado.gui.DeputadoFavoritoActivity;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
+import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.util.Session;
 
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

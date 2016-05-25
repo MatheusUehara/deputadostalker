@@ -9,21 +9,22 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
 import app.deputadostalker.R;
 import app.deputadostalker.comissao.gui.ComissaoFragment;
-import app.deputadostalker.deputado.dominio.*;
+import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.frequencia.gui.FrequenciaFragment;
 import app.deputadostalker.util.Session;
+import io.realm.exceptions.RealmIOException;
 
 
-public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
+public class PerfilDeputado extends android.support.v7.app.AppCompatActivity{
 
     Toolbar toolbar;
     ViewPager pager;
     ViewPagerAdapter adapter;
     TabLayout tabs;
-
     DeputadoService service = DeputadoService.getInstance();
 
     @Override
@@ -62,6 +63,12 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     try {
+
+                        DeputadoFavorito deputado = new DeputadoFavorito();
+                        deputado.setIdUsuario("123123aa412412");
+                        deputado.setIdeCadastro(123122412);
+                        service.insertDeputadoFavorito(deputado);
+                        /*
                         DeputadoFavorito deputado = new DeputadoFavorito();
                         deputado.setIdUsuario(Session.getUsuarioLogado().getId());
                         deputado.setIdeCadastro(Session.getIdeCadastroDeputado());
@@ -71,8 +78,8 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
                             Toast.makeText(PerfilDeputado.this, "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(PerfilDeputado.this, "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
-                        }
-                    }catch (RuntimeException e){
+                        }*/
+                    }catch (RealmIOException e){
                         Toast.makeText(PerfilDeputado.this, "LOUCURA", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -84,10 +91,8 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
     public void slidingTabs() {
         pager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(pager);
-
         tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(pager);
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -98,5 +103,4 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity {
         adapter.addFrag(new ProposicaoDeputado(), "Proposições");
         viewPager.setAdapter(adapter);
     }
-
 }
