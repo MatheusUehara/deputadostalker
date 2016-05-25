@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     ActionBarDrawerToggle mDrawerToggle;
 
-    ArrayList<Deputado> deputadosMaisPesquisados = new ArrayList<Deputado>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +94,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         davDrawer();
-        getMaisBuscados();
+        if (Session.getDeputadosMaisPesquisados().size() == 0) {
+            getMaisBuscados();
+        }else {
+            preencheImagens();
+        }
+
     }
 
 
@@ -227,13 +230,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Deputado>> call, Response<List<Deputado>> response) {
                 List<Deputado> listDeputados = response.body();
                 if( listDeputados != null ){
+                    ArrayList<Deputado> deputadosMaisPesquisados = new ArrayList<Deputado>();
                     for( Deputado d : listDeputados ){
                         deputadosMaisPesquisados.add(d);
-                        Log.d("TAMANHO DO REQUESTTT", d.getNomeCivil() );
                     }
+                    Session.setDeputadosMaisPesquisados(deputadosMaisPesquisados);
                     preencheImagens();
                 }else{
-                    Log.i("ERRORRRRRRRR",String.valueOf(response.errorBody()));
+                    Toast.makeText(MainActivity.this, R.string.erro_conectividade, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -248,92 +252,226 @@ public class MainActivity extends AppCompatActivity {
 
         ImageLoader imageLoader;
 
-        CircularNetworkImageView fotoDeputado = (CircularNetworkImageView) findViewById(R.id.img_deputado_1);
+        CircularNetworkImageView fotoDeputado0 = (CircularNetworkImageView) findViewById(R.id.img_deputado_0);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(0).getUrlFoto(),
-                ImageLoader.getImageListener(fotoDeputado,
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(0).getUrlFoto(),
+                ImageLoader.getImageListener(fotoDeputado0,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado.setImageUrl(deputadosMaisPesquisados.get(0).getUrlFoto(), imageLoader);
+        fotoDeputado0.setImageUrl(Session.getDeputadosMaisPesquisados().get(0).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado1 = (CircularNetworkImageView) findViewById(R.id.img_deputado_2);
+        CircularNetworkImageView fotoDeputado1 = (CircularNetworkImageView) findViewById(R.id.img_deputado_1);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(1).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(1).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado1,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado1.setImageUrl(deputadosMaisPesquisados.get(1).getUrlFoto(), imageLoader);
+        fotoDeputado1.setImageUrl(Session.getDeputadosMaisPesquisados().get(1).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado2 = (CircularNetworkImageView) findViewById(R.id.img_deputado_3);
+        CircularNetworkImageView fotoDeputado2 = (CircularNetworkImageView) findViewById(R.id.img_deputado_2);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(2).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(2).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado2,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado2.setImageUrl(deputadosMaisPesquisados.get(2).getUrlFoto(), imageLoader);
+        fotoDeputado2.setImageUrl(Session.getDeputadosMaisPesquisados().get(2).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado3 = (CircularNetworkImageView) findViewById(R.id.img_deputado_4);
+        CircularNetworkImageView fotoDeputado3 = (CircularNetworkImageView) findViewById(R.id.img_deputado_3);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(3).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(3).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado3,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado3.setImageUrl(deputadosMaisPesquisados.get(3).getUrlFoto(), imageLoader);
+        fotoDeputado3.setImageUrl(Session.getDeputadosMaisPesquisados().get(3).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado4 = (CircularNetworkImageView) findViewById(R.id.img_deputado_5);
+        CircularNetworkImageView fotoDeputado4 = (CircularNetworkImageView) findViewById(R.id.img_deputado_4);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(4).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(4).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado4,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado4.setImageUrl(deputadosMaisPesquisados.get(4).getUrlFoto(), imageLoader);
+        fotoDeputado4.setImageUrl(Session.getDeputadosMaisPesquisados().get(4).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado5 = (CircularNetworkImageView) findViewById(R.id.img_deputado_6);
+        CircularNetworkImageView fotoDeputado5 = (CircularNetworkImageView) findViewById(R.id.img_deputado_5);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(5).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(5).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado5,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado5.setImageUrl(deputadosMaisPesquisados.get(5).getUrlFoto(), imageLoader);
+        fotoDeputado5.setImageUrl(Session.getDeputadosMaisPesquisados().get(5).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado6 = (CircularNetworkImageView) findViewById(R.id.img_deputado_7);
+        CircularNetworkImageView fotoDeputado6 = (CircularNetworkImageView) findViewById(R.id.img_deputado_6);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(6).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(6).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado6,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado6.setImageUrl(deputadosMaisPesquisados.get(6).getUrlFoto(), imageLoader);
+        fotoDeputado6.setImageUrl(Session.getDeputadosMaisPesquisados().get(6).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado7 = (CircularNetworkImageView) findViewById(R.id.img_deputado_8);
+        CircularNetworkImageView fotoDeputado7 = (CircularNetworkImageView) findViewById(R.id.img_deputado_7);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(7).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(7).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado7,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado7.setImageUrl(deputadosMaisPesquisados.get(7).getUrlFoto(), imageLoader);
+        fotoDeputado7.setImageUrl(Session.getDeputadosMaisPesquisados().get(7).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado8 = (CircularNetworkImageView) findViewById(R.id.img_deputado_9);
+        CircularNetworkImageView fotoDeputado8 = (CircularNetworkImageView) findViewById(R.id.img_deputado_8);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(8).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(8).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado8,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado8.setImageUrl(deputadosMaisPesquisados.get(8).getUrlFoto(), imageLoader);
+        fotoDeputado8.setImageUrl(Session.getDeputadosMaisPesquisados().get(8).getUrlFoto(), imageLoader);
 
-        CircularNetworkImageView fotoDeputado9 = (CircularNetworkImageView) findViewById(R.id.img_deputado_10);
+        CircularNetworkImageView fotoDeputado9 = (CircularNetworkImageView) findViewById(R.id.img_deputado_9);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
-        imageLoader.get(deputadosMaisPesquisados.get(9).getUrlFoto(),
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(9).getUrlFoto(),
                 ImageLoader.getImageListener(fotoDeputado9,
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
-        fotoDeputado9.setImageUrl(deputadosMaisPesquisados.get(9).getUrlFoto(), imageLoader);
+        fotoDeputado9.setImageUrl(Session.getDeputadosMaisPesquisados().get(9).getUrlFoto(), imageLoader);
+
+
+        CircularNetworkImageView fotoDeputado10 = (CircularNetworkImageView) findViewById(R.id.img_deputado_10);
+        imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(10).getUrlFoto(),
+                ImageLoader.getImageListener(fotoDeputado10,
+                        R.mipmap.ic_launcher,
+                        R.mipmap.ic_launcher));
+        fotoDeputado10.setImageUrl(Session.getDeputadosMaisPesquisados().get(10).getUrlFoto(), imageLoader);
+
+        CircularNetworkImageView fotoDeputado11 = (CircularNetworkImageView) findViewById(R.id.img_deputado_11);
+        imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
+        imageLoader.get(Session.getDeputadosMaisPesquisados().get(11).getUrlFoto(),
+                ImageLoader.getImageListener(fotoDeputado11,
+                        R.mipmap.ic_launcher,
+                        R.mipmap.ic_launcher));
+        fotoDeputado11.setImageUrl(Session.getDeputadosMaisPesquisados().get(11).getUrlFoto(), imageLoader);
 
     }
-
+    
     public void onClickDeputado0(View view ){
-        Session.setIdeCadastroDeputado(deputadosMaisPesquisados.get(0).getIdeCadastro());
-        Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-        startActivity(i);
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(0).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
     }
+
+    public void onClickDeputado1(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(1).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado2(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(2).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado3(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(3).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado4(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(4).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado5(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0){
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(5).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+    
+    
+
+    public void onClickDeputado6(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(6).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado7(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(7).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado8(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(8).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado9(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(9).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado10(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(10).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onClickDeputado11(View view ){
+        if (Session.getDeputadosMaisPesquisados().size() > 0) {
+            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(11).getIdeCadastro());
+            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            startActivity(i);
+        }else{
+            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

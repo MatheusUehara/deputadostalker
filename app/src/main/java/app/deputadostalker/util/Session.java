@@ -6,7 +6,10 @@ import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.support.annotation.IntegerRes;
 
+import java.util.ArrayList;
+
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.usuario.dominio.Usuario;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -22,6 +25,16 @@ public class Session extends Application {
     public static int ideCadastroDeputado;
 
     private static Context contexto = null;
+
+    public static ArrayList<Deputado> deputadosMaisPesquisados = new ArrayList<>();
+
+    public static ArrayList<Deputado> getDeputadosMaisPesquisados() {
+        return deputadosMaisPesquisados;
+    }
+
+    public static void setDeputadosMaisPesquisados(ArrayList<Deputado> deputadosMaisPesquisados) {
+        Session.deputadosMaisPesquisados = deputadosMaisPesquisados;
+    }
 
     public static int getIdeCadastroDeputado() {
         return ideCadastroDeputado;

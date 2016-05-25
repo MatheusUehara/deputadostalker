@@ -7,57 +7,48 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="197dp">
+            android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.50">
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp">
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/img_deputado_1"
+                            android:layout_height="match_parent"
+                            android:id="@+id/img_deputado_0"
                             android:src="@mipmap/ic_launcher"
                             android:onClick="onClickDeputado0"
-                            android:layout_weight="0.20">
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/img_deputado_1"
+                            android:src="@mipmap/ic_launcher"
+                            android:onClick="onClickDeputado1"
+                            android:layout_weight="0.25">
+                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
+                        <app.deputadostalker.usuario.service.CircularNetworkImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_2"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado2"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_3"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
-                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
-
-                        <app.deputadostalker.usuario.service.CircularNetworkImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/img_deputado_4"
-                            android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
-                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
-
-                        <app.deputadostalker.usuario.service.CircularNetworkImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/img_deputado_5"
-                            android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado3"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                 </LinearLayout>
@@ -65,53 +56,90 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.50">
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp">
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/img_deputado_4"
+                            android:src="@mipmap/ic_launcher"
+                            android:onClick="onClickDeputado4"
+                            android:layout_weight="0.25">
+                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
+                        <app.deputadostalker.usuario.service.CircularNetworkImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/img_deputado_5"
+                            android:src="@mipmap/ic_launcher"
+                            android:onClick="onClickDeputado5"
+                            android:layout_weight="0.25">
+                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
+                        <app.deputadostalker.usuario.service.CircularNetworkImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_6"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado6"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_7"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado7"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp">
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_8"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado8"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_9"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado9"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:id="@+id/img_deputado_10"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="chamaTeste"
-                            android:layout_weight="0.20">
+                            android:onClick="onClickDeputado10"
+                            android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
+                        <app.deputadostalker.usuario.service.CircularNetworkImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/img_deputado_11"
+                            android:src="@mipmap/ic_launcher"
+                            android:onClick="onClickDeputado11"
+                            android:layout_weight="0.25">
+                        </app.deputadostalker.usuario.service.CircularNetworkImageView>
+
                 </LinearLayout>
         </LinearLayout>
 

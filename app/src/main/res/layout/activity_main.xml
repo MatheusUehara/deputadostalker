@@ -18,6 +18,15 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Termômetro dos Deputados"
+            android:id="@+id/textView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp" />
+
         <include
             android:id="@+id/content"
             layout="@layout/main_content"

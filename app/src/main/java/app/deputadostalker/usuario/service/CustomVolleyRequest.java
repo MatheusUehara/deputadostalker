@@ -13,7 +13,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageLoader;
 
 /**
- * Created by Belal on 10/8/2015.
+ * Created by Uehara on 10/8/2015.
  */
 
 public class CustomVolleyRequest {
