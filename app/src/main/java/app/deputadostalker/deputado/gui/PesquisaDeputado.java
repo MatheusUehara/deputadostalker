@@ -22,7 +22,6 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
     private Realm realm;
     Toolbar toolbar;
     DeputadoRecyclerViewAdapter adapter;
-    private String defaultFilter = "nomeParlamentar";
 
 
     @Override

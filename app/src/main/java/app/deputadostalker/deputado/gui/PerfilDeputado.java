@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,14 +29,13 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity{
     @Override
     public void onBackPressed() {
         Session.setIdeCadastroDeputado(0);
-        Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
-        startActivity(i);
         finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_perfil_deputado);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,8 +48,6 @@ public class PerfilDeputado extends android.support.v7.app.AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Session.setIdeCadastroDeputado(0);
-                Intent i = new Intent(PerfilDeputado.this, PesquisaDeputado.class);
-                startActivity(i);
                 finish();
             }
         });

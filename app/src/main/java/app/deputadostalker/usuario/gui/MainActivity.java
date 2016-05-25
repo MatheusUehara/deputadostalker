@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,22 +13,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import app.deputadostalker.R;
-import app.deputadostalker.deputado.dominio.DeputadoFavorito;
+import app.deputadostalker.deputado.api.DeputadoAPI;
+import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.deputado.gui.DeputadoFavoritoActivity;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
-import app.deputadostalker.deputado.service.DeputadoService;
+import app.deputadostalker.frequencia.api.FrequenciaDes;
+import app.deputadostalker.frequencia.dominio.Frequencia;
 import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.util.Session;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawer;
 
     ActionBarDrawerToggle mDrawerToggle;
+
+    ArrayList<Deputado> deputadosMaisPesquisados = new ArrayList<Deputado>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         davDrawer();
+        getMaisBuscados();
     }
 
 
@@ -185,6 +204,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alertDialogBuilder.show();
+    }
+
+    private void linkImageButton(){
+
+    }
+
+
+    private void getMaisBuscados(){
+        Gson gson = new GsonBuilder().registerTypeAdapter(Frequencia.class, new FrequenciaDes()).create();
+
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .baseUrl(getString(R.string.urlBase))
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        final DeputadoAPI deputadoAPI = retrofit.create(DeputadoAPI.class);
+
+        final Call<List<Deputado>> callDeputado = deputadoAPI.maisBuscados();
+        callDeputado.enqueue(new Callback<List<Deputado>>() {
+            @Override
+            public void onResponse(Call<List<Deputado>> call, Response<List<Deputado>> response) {
+                List<Deputado> listDeputados = response.body();
+                if( listDeputados != null ){
+                    for( Deputado d : listDeputados ){
+                        deputadosMaisPesquisados.add(d);
+                        Log.d("TAMANHO DO REQUESTTT", d.getNomeCivil() );
+                    }
+                }else{
+                    Log.i("ERRORRRRRRRR",String.valueOf(response.errorBody()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Deputado>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void chamaTeste(View view){
+        Log.d("FUNFOU","FUNFOU");
     }
 
 }

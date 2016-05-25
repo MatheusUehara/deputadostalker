@@ -54,6 +54,9 @@ public class DeputadoRecyclerViewAdapter extends RealmSearchAdapter<Deputado, De
         viewHolder.deputadoItemView.bind(deputado);
         viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
             @Override public void onClick(View v) {
+
+                //TODO IMPLEMENTAR LOGICA DE INCREMENTAR 1 NO BANCO REMOTO
+
                 Intent i = new Intent( context, PerfilDeputado.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Session.setIdeCadastroDeputado(deputado.getIdeCadastro());
