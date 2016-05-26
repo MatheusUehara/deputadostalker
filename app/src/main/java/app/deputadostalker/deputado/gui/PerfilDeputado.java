@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import io.realm.exceptions.RealmIOException;
 import android.support.v7.app.AppCompatActivity;
 
 
-public class PerfilDeputado extends AppCompatActivity{
+public class PerfilDeputado extends AppCompatActivity implements View.OnClickListener{
 
     Toolbar toolbar;
     ViewPager pager;
@@ -54,35 +55,8 @@ public class PerfilDeputado extends AppCompatActivity{
         });
 
         FloatingActionButton favoriteButtom = (FloatingActionButton) findViewById(R.id.favorite);
-
-        if (favoriteButtom != null) {
-            favoriteButtom.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-
-                        DeputadoFavorito deputado = new DeputadoFavorito();
-                        deputado.setIdUsuario("123123aa412412");
-                        deputado.setIdeCadastro(123122412);
-                        service.insertDeputadoFavorito(deputado);
-                        /*
-                        DeputadoFavorito deputado = new DeputadoFavorito();
-                        deputado.setIdUsuario(Session.getUsuarioLogado().getId());
-                        deputado.setIdeCadastro(Session.getIdeCadastroDeputado());
-                        Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
-
-                        if (service.insertDeputadoFavorito(deputado)) {
-                            Toast.makeText(PerfilDeputado.this, "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(PerfilDeputado.this, "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
-                        }*/
-                    }catch (RealmIOException e){
-                        Toast.makeText(PerfilDeputado.this, "LOUCURA", Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-        }
-
+        PerfilDeputado listener = new PerfilDeputado();
+        favoriteButtom.setOnClickListener(listener);
     }
 
     public void slidingTabs() {
@@ -99,5 +73,29 @@ public class PerfilDeputado extends AppCompatActivity{
         adapter.addFrag(new FrequenciaFragment(), "Frequência");
         adapter.addFrag(new ProposicaoDeputado(), "Proposições");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch ( v.getId()){
+            case R.id.favorite:
+                DeputadoFavorito deputado = new DeputadoFavorito();
+                deputado.setIdUsuario(Session.getUsuarioLogado().getId());
+                deputado.setIdeCadastro(Session.getIdeCadastroDeputado());
+                Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
+
+                if (service.insertDeputadoFavorito(deputado)) {
+                    Toast.makeText(v.getContext(), "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
+                    Log.d("Deputado Favoritado", "COM SUCESSO");
+                } else {
+                    Toast.makeText(v.getContext(), "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
+                    Log.d("Deputado não Favoritado", "ERRO");
+
+                }
+                break;
+            default:
+                break;
+
+        }
     }
 }

@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,13 +75,24 @@ public class MainActivity extends AppCompatActivity {
 
         Button pesquisa = (Button) findViewById(R.id.pesquisa_deputado);
         pesquisa.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, PesquisaDeputado.class);
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,PesquisaDeputado.class);
                 startActivity(i);
             }
         });
 
+
         Button favorito = (Button) findViewById(R.id.deputado_favorito);
+        favorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,DeputadoFavoritoActivity.class);
+                startActivity(i);
+            }
+        });
+
+
         favorito.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, DeputadoFavoritoActivity.class);
@@ -216,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void getMaisBuscados(){
         Gson gson = new GsonBuilder().registerTypeAdapter(Frequencia.class, new FrequenciaDes()).create();
-
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl(getString(R.string.urlBase))
@@ -260,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado0.setImageUrl(Session.getDeputadosMaisPesquisados().get(0).getUrlFoto(), imageLoader);
 
+
         CircularNetworkImageView fotoDeputado1 = (CircularNetworkImageView) findViewById(R.id.img_deputado_1);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
         imageLoader.get(Session.getDeputadosMaisPesquisados().get(1).getUrlFoto(),
@@ -267,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
         fotoDeputado1.setImageUrl(Session.getDeputadosMaisPesquisados().get(1).getUrlFoto(), imageLoader);
+
 
         CircularNetworkImageView fotoDeputado2 = (CircularNetworkImageView) findViewById(R.id.img_deputado_2);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
@@ -284,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado3.setImageUrl(Session.getDeputadosMaisPesquisados().get(3).getUrlFoto(), imageLoader);
 
+
         CircularNetworkImageView fotoDeputado4 = (CircularNetworkImageView) findViewById(R.id.img_deputado_4);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
         imageLoader.get(Session.getDeputadosMaisPesquisados().get(4).getUrlFoto(),
@@ -291,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
         fotoDeputado4.setImageUrl(Session.getDeputadosMaisPesquisados().get(4).getUrlFoto(), imageLoader);
+
 
         CircularNetworkImageView fotoDeputado5 = (CircularNetworkImageView) findViewById(R.id.img_deputado_5);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
@@ -300,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado5.setImageUrl(Session.getDeputadosMaisPesquisados().get(5).getUrlFoto(), imageLoader);
 
+
         CircularNetworkImageView fotoDeputado6 = (CircularNetworkImageView) findViewById(R.id.img_deputado_6);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
         imageLoader.get(Session.getDeputadosMaisPesquisados().get(6).getUrlFoto(),
@@ -307,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
         fotoDeputado6.setImageUrl(Session.getDeputadosMaisPesquisados().get(6).getUrlFoto(), imageLoader);
+
 
         CircularNetworkImageView fotoDeputado7 = (CircularNetworkImageView) findViewById(R.id.img_deputado_7);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
@@ -316,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado7.setImageUrl(Session.getDeputadosMaisPesquisados().get(7).getUrlFoto(), imageLoader);
 
+
         CircularNetworkImageView fotoDeputado8 = (CircularNetworkImageView) findViewById(R.id.img_deputado_8);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
         imageLoader.get(Session.getDeputadosMaisPesquisados().get(8).getUrlFoto(),
@@ -323,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher,
                         R.mipmap.ic_launcher));
         fotoDeputado8.setImageUrl(Session.getDeputadosMaisPesquisados().get(8).getUrlFoto(), imageLoader);
+
 
         CircularNetworkImageView fotoDeputado9 = (CircularNetworkImageView) findViewById(R.id.img_deputado_9);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
@@ -341,6 +358,7 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado10.setImageUrl(Session.getDeputadosMaisPesquisados().get(10).getUrlFoto(), imageLoader);
 
+
         CircularNetworkImageView fotoDeputado11 = (CircularNetworkImageView) findViewById(R.id.img_deputado_11);
         imageLoader = CustomVolleyRequest.getInstance(MainActivity.this).getImageLoader();
         imageLoader.get(Session.getDeputadosMaisPesquisados().get(11).getUrlFoto(),
@@ -350,7 +368,8 @@ public class MainActivity extends AppCompatActivity {
         fotoDeputado11.setImageUrl(Session.getDeputadosMaisPesquisados().get(11).getUrlFoto(), imageLoader);
 
     }
-    
+
+
     public void onClickDeputado0(View view ){
         if (Session.getDeputadosMaisPesquisados().size() > 0) {
             Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(0).getIdeCadastro());
@@ -410,8 +429,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
         }
     }
-    
-    
 
     public void onClickDeputado6(View view ){
         if (Session.getDeputadosMaisPesquisados().size() > 0) {
@@ -472,6 +489,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
 }
