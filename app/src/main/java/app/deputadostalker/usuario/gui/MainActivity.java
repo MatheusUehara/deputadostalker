@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,12 +33,11 @@ import java.util.List;
 
 import app.deputadostalker.R;
 import app.deputadostalker.deputado.api.DeputadoAPI;
+import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.deputado.gui.DeputadoFavoritoActivity;
 import app.deputadostalker.deputado.gui.PerfilDeputado;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
-import app.deputadostalker.frequencia.api.FrequenciaDes;
-import app.deputadostalker.frequencia.dominio.Frequencia;
 import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.usuario.service.CircularNetworkImageView;
 import app.deputadostalker.usuario.service.CustomVolleyRequest;
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(MainActivity.this);
         setContentView(R.layout.activity_main);
 
-        Button pesquisa = (Button) findViewById(R.id.pesquisa_deputado);
+        FloatingActionButton pesquisa = (FloatingActionButton) findViewById(R.id.pesquisa_deputado);
         pesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button favorito = (Button) findViewById(R.id.deputado_favorito);
+        FloatingActionButton favorito = (FloatingActionButton) findViewById(R.id.deputado_favorito);
         favorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         }else {
             preencheImagens();
         }
-
     }
 
 
@@ -225,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getMaisBuscados(){
-        Gson gson = new GsonBuilder().registerTypeAdapter(Frequencia.class, new FrequenciaDes()).create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(Deputado.class, new DeputadoDes()).create();
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl(getString(R.string.urlBase))
@@ -367,129 +366,88 @@ public class MainActivity extends AppCompatActivity {
                         R.mipmap.ic_launcher));
         fotoDeputado11.setImageUrl(Session.getDeputadosMaisPesquisados().get(11).getUrlFoto(), imageLoader);
 
+        fotoDeputado0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(0);
+            }
+        });
+        fotoDeputado1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(1);
+            }
+        });
+        fotoDeputado2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(2);
+            }
+        });
+        fotoDeputado3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(3);
+            }
+        });
+        fotoDeputado4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(4);
+            }
+        });
+        fotoDeputado5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(5);
+            }
+        });
+        fotoDeputado6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(6);
+            }
+        });
+        fotoDeputado7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(7);
+            }
+        });
+        fotoDeputado8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(8);
+            }
+        });
+        fotoDeputado9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(9);
+            }
+        });
+        fotoDeputado10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(10);
+            }
+        });
+        fotoDeputado11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickDeputado(11);
+            }
+        });
     }
 
-
-    public void onClickDeputado0(View view ){
+    public void onClickDeputado(int index ){
         if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(0).getIdeCadastro());
             Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
+            i.putExtra("ideCadastro", Session.getDeputadosMaisPesquisados().get(index).getIdeCadastro());
             startActivity(i);
         }else{
             Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void onClickDeputado1(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(1).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado2(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(2).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado3(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(3).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado4(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(4).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado5(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0){
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(5).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado6(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(6).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado7(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(7).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado8(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(8).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado9(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(9).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado10(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(10).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onClickDeputado11(View view ){
-        if (Session.getDeputadosMaisPesquisados().size() > 0) {
-            Session.setIdeCadastroDeputado(Session.getDeputadosMaisPesquisados().get(11).getIdeCadastro());
-            Intent i = new Intent(MainActivity.this, PerfilDeputado.class);
-            startActivity(i);
-        }else{
-            Toast.makeText(MainActivity.this, R.string.erro_conectividade_deputado_pesquisado, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
 
 }

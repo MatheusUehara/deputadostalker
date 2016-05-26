@@ -21,16 +21,28 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.api.DeputadoAPI;
+import app.deputadostalker.deputado.api.DeputadoDes;
+import app.deputadostalker.deputado.dominio.Deputado;
+import app.deputadostalker.usuario.api.UsuarioAPI;
+import app.deputadostalker.usuario.api.UsuarioDes;
 import app.deputadostalker.usuario.dominio.Usuario;
 import app.deputadostalker.usuario.service.FacebookSign;
 import app.deputadostalker.usuario.service.GoogleSign;
 import app.deputadostalker.usuario.service.UsuarioService;
 import app.deputadostalker.util.Session;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
 
@@ -96,7 +108,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             user.setId(account.getId());
             user.setRedeSocial("GOOGLE+");
             user.setProfileUrl(account.getPhotoUrl().toString());
+
             if (service.insereUsuario(user)){
+                addUsuarioServidor(user);
                 Session.setUsuarioLogado(user);
                 goMainActivity(user.getId());
             }else{
@@ -147,6 +161,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
             user.setProfileUrl(photo);
 
             if (service.insereUsuario(user)){
+                addUsuarioServidor(user);
                 Session.setUsuarioLogado(user);
                 goMainActivity(user.getId());
             }else{
@@ -183,6 +198,40 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void addUsuarioServidor(Usuario usuario){
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(Usuario.class, new UsuarioDes()).create();
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .baseUrl(getString(R.string.urlBase))
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        final UsuarioAPI usuarioAPI = retrofit.create(UsuarioAPI.class);
+
+        final Call<Usuario> callUsuario = usuarioAPI.cadastraUsuario(usuario.getId(),
+                usuario.getNome(),
+                usuario.getProfileUrl(),
+                usuario.getEmail(),
+                usuario.getRedeSocial(),
+                "");
+        callUsuario.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if( response.code() == 201 ){
+                    Log.d("ADICIONOU USUARIO", "NO SERVIDOR");
+                }else{
+                    Log.d("NÃO ADICIONOU USUARIO", "NO SERVIDOR");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Log.d("Sem conexão c internet", "");
+            }
+        });
     }
 
     public void goMainActivity(String userId){

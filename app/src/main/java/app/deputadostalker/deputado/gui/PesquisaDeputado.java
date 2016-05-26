@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,12 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import app.deputadostalker.R;
+import app.deputadostalker.deputado.api.DeputadoAPI;
+import app.deputadostalker.deputado.api.DeputadoDes;
 import app.deputadostalker.deputado.dominio.Deputado;
+import app.deputadostalker.frequencia.api.FrequenciaDes;
+import app.deputadostalker.frequencia.dominio.Frequencia;
 import app.deputadostalker.usuario.gui.MainActivity;
 import app.deputadostalker.util.Session;
 import co.moonmonkeylabs.realmsearchview.RealmSearchAdapter;
@@ -25,6 +34,11 @@ import co.moonmonkeylabs.realmsearchview.RealmSearchView;
 import co.moonmonkeylabs.realmsearchview.RealmSearchViewHolder;
 import io.realm.BaseRealm;
 import io.realm.Realm;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PesquisaDeputado extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,14 +46,12 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
     Toolbar toolbar;
     DeputadoRecyclerViewAdapter adapter;
 
-
     @Override
     public void onBackPressed() {
         Intent i = new Intent(PesquisaDeputado.this, MainActivity.class);
         startActivity(i);
         finish();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +132,34 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    public void addBusca(int ideCadastro){
+        Gson gson = new GsonBuilder().registerTypeAdapter(Deputado.class, new DeputadoDes()).create();
+        Retrofit retrofit = new Retrofit
+                .Builder()
+                .baseUrl(getString(R.string.urlBase))
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        final DeputadoAPI deputadoAPI = retrofit.create(DeputadoAPI.class);
+
+        final Call<Deputado> callDeputado = deputadoAPI.addBusca(ideCadastro);
+        callDeputado.enqueue(new Callback<Deputado>() {
+            @Override
+            public void onResponse(Call<Deputado> call, Response<Deputado> response) {
+                if( response.code() == 201 ){
+                    Log.d("ADICIONOU PESQUISAS", "AMEM");
+                }else{
+                    Log.d("NÃO ADICIONOU PESQUISAS", "BAD");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Deputado> call, Throwable t) {
+                Log.d("Sem conexão c internet", "BAD");
+            }
+        });
+    }
+
 
     public class DeputadoRecyclerViewAdapter extends RealmSearchAdapter<Deputado, DeputadoRecyclerViewAdapter.ViewHolder> {
 
@@ -154,10 +194,12 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
             viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     //TODO IMPLEMENTAR LOGICA DE INCREMENTAR 1 NO BANCO REMOTO
-                    realm.close();
+
+                    addBusca(deputado.getIdeCadastro());
                     Intent i = new Intent( v.getContext(), PerfilDeputado.class);
-                    Session.setIdeCadastroDeputado(deputado.getIdeCadastro());
+                    i.putExtra("ideCadastro",deputado.getIdeCadastro());
                     startActivity(i);
                     finish();
 

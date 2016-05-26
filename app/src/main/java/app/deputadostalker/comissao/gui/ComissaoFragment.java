@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import app.deputadostalker.R;
 import app.deputadostalker.comissao.dominio.Comissao;
 import app.deputadostalker.comissao.service.ComissaoService;
+import app.deputadostalker.deputado.gui.PerfilDeputado;
 import app.deputadostalker.util.Session;
 
 
@@ -24,14 +25,18 @@ public class ComissaoFragment extends Fragment {
 
     ComissaoService comissaoService = ComissaoService.getInstance();
 
+    public PerfilDeputado perfilDeputado;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        perfilDeputado = (PerfilDeputado) getActivity();
 
         View view = inflater.inflate(R.layout.fragment_comissao, container, false);
 
         ListView list = (ListView) view.findViewById(R.id.comissoes);
 
-        ArrayList<Comissao> comissoes = comissaoService.getComissoes(Session.getIdeCadastroDeputado());
+        ArrayList<Comissao> comissoes = comissaoService.getComissoes(perfilDeputado.ideCadastro);
 
         Log.d("NUMERO DE COMISSOES ", String.valueOf(comissoes.size()));
 

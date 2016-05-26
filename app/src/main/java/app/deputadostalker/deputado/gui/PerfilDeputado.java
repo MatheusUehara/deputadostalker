@@ -15,8 +15,8 @@ import app.deputadostalker.comissao.gui.ComissaoFragment;
 import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.frequencia.gui.FrequenciaFragment;
+import app.deputadostalker.proposicao.gui.ProposicaoFragment;
 import app.deputadostalker.util.Session;
-import io.realm.exceptions.RealmIOException;
 import android.support.v7.app.AppCompatActivity;
 
 
@@ -28,15 +28,19 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
     TabLayout tabs;
     DeputadoService service = DeputadoService.getInstance();
 
+    public int ideCadastro;
+
     @Override
     public void onBackPressed() {
-        Session.setIdeCadastroDeputado(0);
         finish();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        ideCadastro = intent.getIntExtra("ideCadastro",160976);
 
         setContentView(R.layout.activity_perfil_deputado);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,7 +53,6 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Session.setIdeCadastroDeputado(0);
                 finish();
             }
         });
@@ -71,7 +74,7 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
         adapter.addFrag(new PerfilFragment(), "Perfil");
         adapter.addFrag(new ComissaoFragment(),"Comissoes");
         adapter.addFrag(new FrequenciaFragment(), "Frequência");
-        adapter.addFrag(new ProposicaoDeputado(), "Proposições");
+        adapter.addFrag(new ProposicaoFragment(), "Proposições");
         viewPager.setAdapter(adapter);
     }
 
@@ -81,7 +84,7 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
             case R.id.favorite:
                 DeputadoFavorito deputado = new DeputadoFavorito();
                 deputado.setIdUsuario(Session.getUsuarioLogado().getId());
-                deputado.setIdeCadastro(Session.getIdeCadastroDeputado());
+                deputado.setIdeCadastro(ideCadastro);
                 Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
 
                 if (service.insertDeputadoFavorito(deputado)) {

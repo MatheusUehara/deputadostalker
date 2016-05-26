@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
 
@@ -29,7 +30,11 @@ import app.deputadostalker.util.Session;
 public class DeputadoFavoritoActivity extends AppCompatActivity {
 
     Toolbar toolbar;
+
     DeputadoService service = DeputadoService.getInstance();
+
+    ArrayList<Deputado> deputados ;
+
     ListView list;
 
     @Override
@@ -43,12 +48,9 @@ public class DeputadoFavoritoActivity extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
 
-
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Session.setIdeCadastroDeputado(0);
                 Intent i = new Intent(DeputadoFavoritoActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
@@ -57,7 +59,7 @@ public class DeputadoFavoritoActivity extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.deputado_favorito_list_view);
 
-        ArrayList<Deputado> deputados = service.getDeputadosFavoritos(Session.getUsuarioLogado());
+        deputados = service.getDeputadosFavoritos(Session.getUsuarioLogado());
 
         Log.d("DEPUTADOS FAVORITOS ", String.valueOf(deputados.size()));
 
@@ -69,10 +71,13 @@ public class DeputadoFavoritoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Deputado deputadoSelecionado = (Deputado) list.getItemAtPosition(i);
-                Session.setIdeCadastroDeputado(deputadoSelecionado.getIdeCadastro());
-
-                Intent intent = new Intent (DeputadoFavoritoActivity.this, PerfilDeputado.class);
-                startActivity(intent);
+                if (deputadoSelecionado != null) {
+                    Intent intent = new Intent(DeputadoFavoritoActivity.this, PerfilDeputado.class);
+                    intent.putExtra("ideCadastro", deputadoSelecionado.getIdeCadastro());
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(DeputadoFavoritoActivity.this, "ERRO", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

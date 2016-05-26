@@ -34,11 +34,18 @@ public class PerfilFragment extends Fragment {
 
     DeputadoService service = DeputadoService.getInstance();
 
+    public PerfilDeputado perfilDeputado;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        Deputado deputado = service.getDeputado(Session.getIdeCadastroDeputado());
+        perfilDeputado = (PerfilDeputado) getActivity();
+
+        int ideCadastro = perfilDeputado.ideCadastro;
+
+        Deputado deputado = service.getDeputado(ideCadastro);
 
         TextView nomeParlamentar = (TextView) view.findViewById(R.id.nomeParlamentar);
         nomeParlamentar.setText(deputado.getNomeParlamentar());
@@ -78,9 +85,6 @@ public class PerfilFragment extends Fragment {
                         R.mipmap.ic_launcher));
         fotoDeputado.setImageUrl(deputado.getUrlFoto(), imageLoader);
 
-/*
-
-*/
         return view;
     }
 

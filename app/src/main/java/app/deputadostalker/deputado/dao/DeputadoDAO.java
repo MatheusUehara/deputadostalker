@@ -32,7 +32,6 @@ public class DeputadoDAO extends DAO {
                 .findAll();
         if (deputados.size() > 0){
             return deputados.get(0);
-
         }else{
             return new Deputado();
         }
@@ -66,7 +65,6 @@ public class DeputadoDAO extends DAO {
         ArrayList<Deputado> deputadosFavoritos = new ArrayList<Deputado>();
 
         RealmResults<DeputadoFavorito> deputados = realm.where(DeputadoFavorito.class).equalTo("idUsuario",usuario.getId()).findAll();
-
         if (deputados.size() > 0){
             for (DeputadoFavorito i : deputados){
                 deputadosFavoritos.add(getDeputado(i.getIdeCadastro()));

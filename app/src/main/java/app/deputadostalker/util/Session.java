@@ -22,7 +22,7 @@ public class Session extends Application {
     public static Usuario usuarioLogado;
 
     //TODO retirar o ide da sessao e passar via intent;
-    public static int ideCadastroDeputado;
+    //public static int ideCadastroDeputado;
 
     private static Context contexto = null;
 
@@ -35,7 +35,7 @@ public class Session extends Application {
     public static void setDeputadosMaisPesquisados(ArrayList<Deputado> deputadosMaisPesquisados) {
         Session.deputadosMaisPesquisados = deputadosMaisPesquisados;
     }
-
+/*
     public static int getIdeCadastroDeputado() {
         return ideCadastroDeputado;
     }
@@ -43,7 +43,7 @@ public class Session extends Application {
     public static void setIdeCadastroDeputado(int ideCadastroDeputado) {
         Session.ideCadastroDeputado = ideCadastroDeputado;
     }
-
+*/
     public static void setUsuarioLogado(Usuario usuario) {
         usuarioLogado = usuario;
     }

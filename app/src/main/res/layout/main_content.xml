@@ -20,7 +20,7 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_0"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado0"
+
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -29,7 +29,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_1"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado1"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -38,7 +37,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_2"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado2"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -47,7 +45,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_3"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado3"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -56,15 +53,13 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="70dp">
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_4"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado4"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -73,7 +68,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_5"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado5"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -82,7 +76,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_6"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado6"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -91,7 +84,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_7"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado7"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -101,15 +93,13 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="70dp">
 
                         <app.deputadostalker.usuario.service.CircularNetworkImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_8"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado8"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -118,7 +108,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_9"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado9"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -127,7 +116,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_10"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado10"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -136,7 +124,6 @@
                             android:layout_height="match_parent"
                             android:id="@+id/img_deputado_11"
                             android:src="@mipmap/ic_launcher"
-                            android:onClick="onClickDeputado11"
                             android:layout_weight="0.25">
                         </app.deputadostalker.usuario.service.CircularNetworkImageView>
 
@@ -154,17 +141,20 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5">
 
-                        <Button
+                        <android.support.design.widget.FloatingActionButton
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Pesquisa Deputado"
                             android:id="@+id/pesquisa_deputado"
-                            android:layout_weight="0.50" />
+                            android:layout_weight="0.50"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_search" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:src="@drawable/ic_search"
                             android:text="Pesquisar Deputado"
                             android:id="@+id/txtPesquisarDeputado"
                             android:layout_gravity="center_horizontal" />
@@ -176,12 +166,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.5">
 
-                        <Button
+                        <android.support.design.widget.FloatingActionButton
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:src="@drawable/ic_star"
                             android:text="Deputado Favorito"
                             android:id="@+id/deputado_favorito"
-                            android:layout_weight="0.50" />
+                            android:layout_weight="0.50"
+                            android:layout_gravity="center_horizontal" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -193,7 +185,4 @@
                 </LinearLayout>
 
         </LinearLayout>
-
-
-
 </LinearLayout>

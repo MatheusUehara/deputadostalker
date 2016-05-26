@@ -36,7 +36,6 @@ public class ComissaoDAO extends DAO {
             RealmResults<Comissao> comissao = realm.where(Comissao.class).contains("idOrgao", String.valueOf(i.getOrgao_idOrgao())).findAll();
             comissoes.add(comissao.get(0));
         }
-
         return comissoes;
 
     }
@@ -49,6 +48,7 @@ public class ComissaoDAO extends DAO {
 
     public RealmResults<ComissaoDeputado> getComissaoDeputado(int ideCadastro){
         RealmResults<ComissaoDeputado> comissaoDeputado;
-        return comissaoDeputado = realm.where(ComissaoDeputado.class).equalTo("deputado_ideCadastro", ideCadastro).findAll();
+        comissaoDeputado = realm.where(ComissaoDeputado.class).equalTo("deputado_ideCadastro", ideCadastro).findAll();
+        return comissaoDeputado;
     }
 }

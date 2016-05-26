@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 import app.deputadostalker.R;
 import app.deputadostalker.deputado.dominio.Deputado;
+import app.deputadostalker.deputado.gui.PerfilDeputado;
 import app.deputadostalker.deputado.service.DeputadoService;
 import app.deputadostalker.frequencia.api.FrequenciaAPI;
 import app.deputadostalker.frequencia.api.FrequenciaDes;
@@ -32,9 +33,13 @@ public class FrequenciaFragment extends Fragment {
     CalendarView calendarView;
     TextView dateDisplay;
     List<Frequencia> listaFrequencia =null;
+    public PerfilDeputado perfilDeputado;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        perfilDeputado = (PerfilDeputado) getActivity();
 
         View view = inflater.inflate(R.layout.fragment_presenca, container, false);
 
@@ -50,7 +55,7 @@ public class FrequenciaFragment extends Fragment {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
 
-                Deputado deputado = deputadoService.getDeputado(Session.getIdeCadastroDeputado());
+                Deputado deputado = deputadoService.getDeputado(perfilDeputado.ideCadastro);
 
                 int matricula = deputado.getMatricula();
 

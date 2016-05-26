@@ -21,10 +21,6 @@ public interface DeputadoAPI {
     Call<List<Deputado>> maisBuscados();
 
     @Multipart
-    @POST("deputado/busca")
+    @POST("deputado/addBusca")
     Call<Deputado> addBusca(@Part("ideCadastro") int ideCadastro);
-
-
-
-
 }
