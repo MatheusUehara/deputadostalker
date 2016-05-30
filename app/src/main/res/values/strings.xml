@@ -13,9 +13,4 @@
     <string name="navigation_drawer_close"></string>
     <string name="erro_conectividade_deputado_pesquisado">Não foi possivel pegar as informações deste deputado, verifique sua conexão com a internet</string>
     <string name="erro_conectividade">Não foi possivel se conectar com a internet</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_calendario">CalendarioActivity</string>
 </resources>

@@ -1,5 +1,7 @@
 package app.deputadostalker.proposicao.dao;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import app.deputadostalker.comissao.dominio.Comissao;
@@ -8,6 +10,7 @@ import app.deputadostalker.proposicao.dominio.Proposicao;
 import app.deputadostalker.proposicao.dominio.ProposicaoDeputado;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 
 /**
  * Created by igormlgomes on 25/05/16.
@@ -62,6 +65,27 @@ public class ProposicaoDAO extends DAO {
         }else{
             return retorno;
 
+        }
+    }
+
+
+    public boolean insereProposicao (Proposicao p){
+        try{
+            realm.beginTransaction();
+            Proposicao novaProposicao= realm.createObject(Proposicao.class);
+            novaProposicao.setNome(p.getNome());
+            novaProposicao.setNumero(p.getNumero());
+            novaProposicao.setAno(p.getAno());
+            novaProposicao.setTxtEmenta(p.getTxtEmenta());
+            novaProposicao.setTxtExplicacaoEmenta(p.getTxtExplicacaoEmenta());
+            novaProposicao.setDataApresentacao(p.getDataApresentacao());
+            novaProposicao.setDataUltimoDespacho(p.getDataUltimoDespacho());
+            novaProposicao.setTxtUltimoDespacho(p.getTxtUltimoDespacho());
+            novaProposicao.setOrgao_idOrgao(p.getOrgao_idOrgao());
+            return true;
+        }catch (RealmPrimaryKeyConstraintException e){
+            Log.d("Comissao já existe" , "Comissao ja existe");
+            return false;
         }
     }
 

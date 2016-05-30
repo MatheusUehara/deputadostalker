@@ -8,32 +8,37 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".usuario.gui.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        android:theme="@style/AppTheme.NoActionBar">
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity android:name=".usuario.gui.SplashAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".usuario.gui.LoginActivity"
+            android:label="@string/app_name" />
+
         <activity
             android:name=".usuario.gui.MainActivity"
-            android:label="Deputado Stalker"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Deputado Stalker" />
+
         <activity
             android:name=".deputado.gui.PerfilDeputado"
-            android:label="Perfil Deputado"
+            android:label="Perfil Deputado" />
+
+        <activity
+            android:name=".deputado.gui.PesquisaDeputado"
+            android:label="Pesquisa Deputado" />
+
+        <activity
+            android:name=".deputado.gui.DeputadoFavoritoActivity"
+            android:label="Deputados Favoritos" />
+
+        <activity android:name=".proposicao.gui.ProposicaoActivity"
+            android:label="Proposição"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Facebook Config -->
@@ -47,28 +52,10 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-
+        <!-- Google Config -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <!-- Facebook Config END -->
 
-        <activity
-            android:name=".deputado.gui.PesquisaDeputado"
-            android:label="Pesquisa Deputado"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!--  REMOVER ESTA ACTIVITY ELA FOI CRIADA APENAS PARA TESTAR AS REQUISICOES -->
-        <activity android:name=".partido.gui.PartidoActivity"/>
-
-        <activity android:name=".deputado.gui.DeputadoFavoritoActivity"
-            android:label="Deputados Favoritos"
-            android:theme="@style/AppTheme.NoActionBar"
-        ></activity>
-
-        <activity android:name=".proposicao.gui.ProposicaoActivity"
-            android:label="Proposição"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
 </manifest>

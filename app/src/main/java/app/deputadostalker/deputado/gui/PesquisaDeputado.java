@@ -56,6 +56,7 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pesquisa_deputado);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -100,20 +101,6 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (realm != null) {
-            realm.close();
-            realm = null;
-        }
-    }
-
-    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (position){
             case 0:
@@ -124,6 +111,9 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
                 break;
             case 2:
                 adapter.setFilterKey("ufRepresentacaoAtual");
+                break;
+            default:
+                adapter.setFilterKey("nomeParlamentar");
                 break;
         }
     }
@@ -194,16 +184,11 @@ public class PesquisaDeputado extends AppCompatActivity implements AdapterView.O
             viewHolder.itemView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    //TODO IMPLEMENTAR LOGICA DE INCREMENTAR 1 NO BANCO REMOTO
-
                     addBusca(deputado.getIdeCadastro());
                     Intent i = new Intent( v.getContext(), PerfilDeputado.class);
                     i.putExtra("ideCadastro",deputado.getIdeCadastro());
                     startActivity(i);
                     finish();
-
-
                 }
             });
         }

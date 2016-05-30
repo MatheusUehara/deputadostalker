@@ -88,35 +88,4 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
-
-    private void testeReq(){
-        Gson gson = new GsonBuilder().registerTypeAdapter(Deputado.class ,new DeputadoDes()).create();
-
-        Retrofit retrofit = new Retrofit
-                .Builder()
-                .baseUrl(getString(R.string.urlBase))
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        DeputadoAPI deputadoAPI = retrofit.create(DeputadoAPI.class);
-
-        final Call<List<Deputado>> callDeputado = deputadoAPI.getDeputados();
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    List<Deputado> listDeputados = callDeputado.execute().body();
-                    if( listDeputados != null ){
-                        for( Deputado d : listDeputados ){
-                            Log.i("Perfil Deputado", "Deputado: "+d.getNomeParlamentar());
-                        }
-                    }
-                } catch (java.io.IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-    }
-
 }

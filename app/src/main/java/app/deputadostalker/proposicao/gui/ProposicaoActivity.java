@@ -19,7 +19,7 @@ import app.deputadostalker.proposicao.service.ProposicaoService;
  */
 public class ProposicaoActivity extends AppCompatActivity{
 
-    ProposicaoService service = ProposicaoService.getInstance();
+    //ProposicaoService service = ProposicaoService.getInstance();
 
     Toolbar toolbar;
 
@@ -41,7 +41,6 @@ public class ProposicaoActivity extends AppCompatActivity{
         });
 
         Intent intent = getIntent();
-        int idProposicao = intent.getIntExtra("idProposicao", 0);
 
         TextView nome = (TextView) findViewById(R.id.nomeProposicao);
         TextView numero = (TextView) findViewById(R.id.numeroProposicao);
@@ -56,19 +55,17 @@ public class ProposicaoActivity extends AppCompatActivity{
         TextView tipo = (TextView) findViewById(R.id.tipoProposicao);
 
 
-        ArrayList<String> proposicao = service.getProposicao(idProposicao);
-
-        if (proposicao.size() == 9){
-            nome.append(proposicao.get(0));
-            numero.append(proposicao.get(1));
-            ano.append(proposicao.get(2));
-            ementa.append(proposicao.get(3));
-            expEmenta.append(proposicao.get(4));
-            dataApresentacao.append(proposicao.get(5));
-            dataUltDesp.append(proposicao.get(6));
-            ultDesp.append(proposicao.get(7));
-            orgao.append(proposicao.get(8));
-        }else{
+        try{
+            nome.append(intent.getStringExtra("nome"));
+            numero.append(String.valueOf(intent.getIntExtra("numero",0)));
+            ano.append(intent.getStringExtra("ano"));
+            ementa.append(intent.getStringExtra("ementa"));
+            expEmenta.append(intent.getStringExtra("expEmenta"));
+            dataApresentacao.append(intent.getStringExtra("dataApresentacao"));
+            dataUltDesp.append(intent.getStringExtra("dataUltDesp"));
+            ultDesp.append(intent.getStringExtra("ultDesp"));
+            orgao.append(intent.getStringExtra("orgao"));
+        }catch (RuntimeException e){
             Toast.makeText(ProposicaoActivity.this,"Não foi possivel carregar os dados desta proposicao",Toast.LENGTH_SHORT).show();
         }
     }

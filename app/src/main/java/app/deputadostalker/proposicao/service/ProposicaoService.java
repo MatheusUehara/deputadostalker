@@ -31,4 +31,8 @@ public class ProposicaoService {
         return proposicaoDAO.getProposicao(idProposicao);
     }
 
+    public boolean insereProposicao (Proposicao proposicao){
+        return proposicaoDAO.insereProposicao(proposicao);
+    }
+
 }

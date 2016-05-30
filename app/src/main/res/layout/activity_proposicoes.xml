@@ -9,16 +9,24 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nome"
             android:id="@+id/nomeProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/toolbar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="52dp" />
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,10 +34,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Numero"
             android:id="@+id/numeroProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/nomeProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="92dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,10 +47,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Ano"
             android:id="@+id/anoProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/numeroProposicao"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="132dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,10 +59,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Ementa"
             android:id="@+id/ementaProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/txtDespachoProposicao"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="372dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,10 +71,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Explicação"
             android:id="@+id/explicacaoProposicao"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:layout_below="@+id/ementaProposicao"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="412dp" />
+            android:layout_alignParentStart="true" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,10 +84,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Data de Apresentação"
             android:id="@+id/dataProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/orgaoProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="252dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -81,10 +97,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Data Ultimo Despacho"
             android:id="@+id/dataDespachoProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/dataProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="292dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,10 +110,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Ultimo Despacho"
             android:id="@+id/txtDespachoProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/dataDespachoProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="332dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,10 +123,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Órgão"
             android:id="@+id/orgaoProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/tipoProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="212dp" />
+            android:layout_marginTop="10dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,10 +136,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Situação"
             android:id="@+id/situacaoProposicao"
-            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:layout_below="@+id/explicacaoProposicao"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="452dp" />
+            android:layout_alignParentStart="true" />
+
 
 
         <TextView
@@ -126,10 +150,12 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Tipo"
             android:id="@+id/tipoProposicao"
-            android:layout_alignParentTop="true"
+            android:textColor="#000000"
+            android:layout_below="@+id/anoProposicao"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="172dp" />
+            android:layout_marginTop="10dp" />
+
 
 
     </RelativeLayout>

@@ -41,7 +41,7 @@ public class ProposicaoFragment extends Fragment {
 
     PerfilDeputado perfilDeputado;
 
-    ArrayList<Proposicao> proposicoes;
+    ArrayList<Proposicao> proposicoes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,28 +52,36 @@ public class ProposicaoFragment extends Fragment {
 
         int ideCadastro = perfilDeputado.ideCadastro;
 
-        Log.d("ideCADASTROOOO" , String.valueOf(ideCadastro));
+        Log.d("ideCadastro" , String.valueOf(ideCadastro));
 
         final ListView list = (ListView) view.findViewById(R.id.proposicoes);
 
         requisicaoTest(ideCadastro, list);
-
+/*
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),ProposicaoActivity.class);
                 Proposicao proposicao = proposicoes.get(position);
-                intent.putExtra("idProposicao", proposicao.getIdProposicao() );
+                //intent.putExtra("idProposicao", proposicao.getIdProposicao() );
+                intent.putExtra("nome",proposicao.getNome());
+                intent.putExtra("numero",proposicao.getNumero());
+                intent.putExtra("ano",proposicao.getAno());
+                intent.putExtra("ementa",proposicao.getTxtEmenta());
+                intent.putExtra("expEmenta",proposicao.getTxtExplicacaoEmenta());
+                intent.putExtra("dataApresentacao",proposicao.getDataApresentacao());
+                intent.putExtra("dataUltDesp",proposicao.getDataUltimoDespacho());
+                intent.putExtra("ultDesp",proposicao.getTxtUltimoDespacho());
+                intent.putExtra("orgao",proposicao.getOrgao_idOrgao());
                 startActivity(intent);
             }
         });
-
+*/
         return view;
 }
 
     private void requisicaoTest(int ideCadastro, final ListView list){
         final Gson gson = new GsonBuilder().registerTypeAdapter(Proposicao.class, new ProposicaoDes()).create();
-
         final Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl(getString(R.string.urlBase))
@@ -81,18 +89,15 @@ public class ProposicaoFragment extends Fragment {
                 .build();
         final ProposicaoAPI proposicaoAPI = retrofit.create(ProposicaoAPI.class);
 
-            final Call<List<Proposicao>> callProposicao = proposicaoAPI.getProposicoes(ideCadastro);
-            callProposicao.enqueue(new Callback<List<Proposicao>>() {
+        final Call<List<Proposicao>> callProposicao = proposicaoAPI.getProposicoes(ideCadastro);
+        callProposicao.enqueue(new Callback<List<Proposicao>>() {
             @Override
             public void onResponse(Call<List<Proposicao>> call, Response<List<Proposicao>> response) {
                 List<Proposicao> listProposicoes = response.body();
-                if(listProposicoes!=null){
+                if(listProposicoes != null){
+                    Log.d("TAMANHO" , String.valueOf(listProposicoes.size()));
                     for( Proposicao p : listProposicoes ){
-                        if (p != null){
-                            Log.i("nome", "Nome: " + p.getNome());
-                            Log.i("adicionando" , String.valueOf(p));
-                            proposicoes.add(p);
-                        }
+                        proposicoes.add(p);
                     }
                     ProposicaoAdapter proposicaoAdapter = new ProposicaoAdapter(getContext(), proposicoes);
                     list.setAdapter(proposicaoAdapter);
@@ -101,9 +106,7 @@ public class ProposicaoFragment extends Fragment {
                 }
             }
             @Override
-            public void onFailure(Call<List<Proposicao>> call, Throwable t) {
-                Log.i("ERRORRRRRRRR","Erro não foi possivel conectar");
-            }
+            public void onFailure(Call<List<Proposicao>> call, Throwable t) {}
         });
     }
 

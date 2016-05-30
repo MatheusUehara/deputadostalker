@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
 /**
  * Created by igormlgomes on 25/05/16.
  */
-public class Proposicao extends RealmObject implements RealmModel {
+public class Proposicao extends RealmObject{
 
     @PrimaryKey
     private int idProposicao;
@@ -19,8 +19,8 @@ public class Proposicao extends RealmObject implements RealmModel {
     private String dataApresentacao;
     private String dataUltimoDespacho;
     private String txtUltimoDespacho;
-    private int orgao_idOrgao;
-    private int situacaoProposicao_idSituacaoProposicao;
+    private String orgao_idOrgao;
+    private String situacaoProposicao_idSituacaoProposicao;
     private int tipoProposicao_idTipoProposicao;
 
     public int getIdProposicao() {
@@ -95,19 +95,19 @@ public class Proposicao extends RealmObject implements RealmModel {
         this.txtUltimoDespacho = txtUltimoDespacho;
     }
 
-    public int getOrgao_idOrgao() {
+    public String getOrgao_idOrgao() {
         return orgao_idOrgao;
     }
 
-    public void setOrgao_idOrgao(int orgao_idOrgao) {
+    public void setOrgao_idOrgao(String orgao_idOrgao) {
         this.orgao_idOrgao = orgao_idOrgao;
     }
 
-    public int getSituacaoProposicao_idSituacaoProposicao() {
+    public String getSituacaoProposicao_idSituacaoProposicao() {
         return situacaoProposicao_idSituacaoProposicao;
     }
 
-    public void setSituacaoProposicao_idSituacaoProposicao(int situacaoProposicao_idSituacaoProposicao) {
+    public void setSituacaoProposicao_idSituacaoProposicao(String situacaoProposicao_idSituacaoProposicao) {
         this.situacaoProposicao_idSituacaoProposicao = situacaoProposicao_idSituacaoProposicao;
     }
 

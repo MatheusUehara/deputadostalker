@@ -4,12 +4,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="@color/colorPrimary">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="202dp"
+        android:layout_height="201dp"
         android:id="@+id/imageView"
+        android:src="@mipmap/ic_launcher"
         android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="DeputadoStalker"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="#ffffff" />
+
 
 </FrameLayout>

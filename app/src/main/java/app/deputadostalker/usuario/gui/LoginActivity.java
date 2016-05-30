@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.FacebookException;
@@ -28,9 +27,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import app.deputadostalker.R;
-import app.deputadostalker.deputado.api.DeputadoAPI;
-import app.deputadostalker.deputado.api.DeputadoDes;
-import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.usuario.api.UsuarioAPI;
 import app.deputadostalker.usuario.api.UsuarioDes;
 import app.deputadostalker.usuario.dominio.Usuario;
@@ -45,7 +41,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoLoginGoogleCallback, FacebookSign.InfoLoginFaceCallback {
-
 
     GoogleSign googleSign;
     FacebookSign facebookSign;
@@ -69,14 +64,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
         facebookSign.signInWithFaceButton(loginButton);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         FacebookSdk.sdkInitialize(LoginActivity.this);
+
         setContentView(R.layout.activity_login);
-        final ImageView image = (ImageView) findViewById(R.id.logo);
-        image.setImageResource(R.mipmap.ic_launcher);
 
         this.isFacebookKeyGenerated();
 
@@ -86,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
         bindViews();
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -131,9 +125,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleSign.InfoL
 
     public void isFacebookKeyGenerated() {
         try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "app.deputadostalker",
-                    PackageManager.GET_SIGNATURES);
+            PackageInfo info = getPackageManager().getPackageInfo("app.deputadostalker",PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());

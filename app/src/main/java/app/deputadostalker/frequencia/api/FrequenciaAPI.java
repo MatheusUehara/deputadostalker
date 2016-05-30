@@ -15,7 +15,7 @@ public interface FrequenciaAPI {
     @GET("deputado/frequencia/de={dataInicial}/ate={dataFinal}/deputadoMatricula={matricula}")
     Call<List<Frequencia>> getFrequencia(@Path("dataInicial") String dataInicial,
                                          @Path("dataFinal") String dataFinal,
-                                         @Path("matricula") int matricula);
+                                         @Path("matricula") int matricula );
 
 }
 

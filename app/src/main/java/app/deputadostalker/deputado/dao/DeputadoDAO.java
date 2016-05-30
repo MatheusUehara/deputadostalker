@@ -8,6 +8,7 @@ import app.deputadostalker.deputado.dominio.DeputadoFavorito;
 import app.deputadostalker.usuario.dominio.Usuario;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.rx.RealmObservableFactory;
 
 /**
  * Created by Matheus Uehara on 22/05/2016.
@@ -46,7 +47,7 @@ public class DeputadoDAO extends DAO {
             deputadoFavorito.setIdUsuario(deputado.getIdUsuario());
             realm.commitTransaction();
             return true;
-        }else{
+        } else {
             return false;
         }
     }

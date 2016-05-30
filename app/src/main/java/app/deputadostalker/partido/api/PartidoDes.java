@@ -18,8 +18,8 @@ public class PartidoDes implements JsonDeserializer<Object> {
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement partido = json.getAsJsonObject();
-        if (partido.getAsJsonObject().get("partido")!= null){
-            partido = partido.getAsJsonObject().get("partido");
+        if (partido.getAsJsonObject().get("")!= null){
+            partido = partido.getAsJsonObject().get("");
         }
         return (new Gson().fromJson( partido , Partido.class));
     }

@@ -20,7 +20,7 @@ import app.deputadostalker.util.Session;
 import android.support.v7.app.AppCompatActivity;
 
 
-public class PerfilDeputado extends AppCompatActivity implements View.OnClickListener{
+public class PerfilDeputado extends AppCompatActivity{
 
     Toolbar toolbar;
     ViewPager pager;
@@ -58,8 +58,27 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
         });
 
         FloatingActionButton favoriteButtom = (FloatingActionButton) findViewById(R.id.favorite);
-        PerfilDeputado listener = new PerfilDeputado();
-        favoriteButtom.setOnClickListener(listener);
+        favoriteButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeputadoFavorito deputado = new DeputadoFavorito();
+                deputado.setIdUsuario(Session.getUsuarioLogado().getId());
+                deputado.setIdeCadastro(ideCadastro);
+                Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
+
+                if (service.insertDeputadoFavorito(deputado)) {
+                    Toast.makeText(v.getContext(), "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
+                    Log.d("Deputado Favoritado", "COM SUCESSO");
+                } else {
+                    Toast.makeText(v.getContext(), "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
+                    Log.d("Deputado não Favoritado", "ERRO");
+                }
+            }
+        });
+    }
+
+    public int getIdeCadastro() {
+        return ideCadastro;
     }
 
     public void slidingTabs() {
@@ -76,29 +95,5 @@ public class PerfilDeputado extends AppCompatActivity implements View.OnClickLis
         adapter.addFrag(new FrequenciaFragment(), "Frequência");
         adapter.addFrag(new ProposicaoFragment(), "Proposições");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch ( v.getId()){
-            case R.id.favorite:
-                DeputadoFavorito deputado = new DeputadoFavorito();
-                deputado.setIdUsuario(Session.getUsuarioLogado().getId());
-                deputado.setIdeCadastro(ideCadastro);
-                Log.d("VALORES", deputado.getIdUsuario() + " " + deputado.getIdeCadastro());
-
-                if (service.insertDeputadoFavorito(deputado)) {
-                    Toast.makeText(v.getContext(), "Deputado Favoritado com sucesso", Toast.LENGTH_LONG).show();
-                    Log.d("Deputado Favoritado", "COM SUCESSO");
-                } else {
-                    Toast.makeText(v.getContext(), "O Deputado solicitado já é favorito", Toast.LENGTH_LONG).show();
-                    Log.d("Deputado não Favoritado", "ERRO");
-
-                }
-                break;
-            default:
-                break;
-
-        }
     }
 }

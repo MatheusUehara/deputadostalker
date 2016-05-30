@@ -19,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -38,7 +37,6 @@ import app.deputadostalker.deputado.dominio.Deputado;
 import app.deputadostalker.deputado.gui.DeputadoFavoritoActivity;
 import app.deputadostalker.deputado.gui.PerfilDeputado;
 import app.deputadostalker.deputado.gui.PesquisaDeputado;
-import app.deputadostalker.partido.gui.PartidoActivity;
 import app.deputadostalker.usuario.service.CircularNetworkImageView;
 import app.deputadostalker.usuario.service.CustomVolleyRequest;
 import app.deputadostalker.util.Session;
@@ -157,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
                     if (position == 1) {
                         Toast.makeText(MainActivity.this, "Clicou no PERFIL", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(MainActivity.this, PartidoActivity.class);
-                        startActivity(i);
                     } else if (position == 2) {
                         Toast.makeText(MainActivity.this, "Clicou em CONFIGURAÇÕES", Toast.LENGTH_SHORT).show();
                     } else if (position == 3) {

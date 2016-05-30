@@ -1,5 +1,7 @@
 package app.deputadostalker.proposicao.api;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -15,12 +17,14 @@ import app.deputadostalker.proposicao.dominio.Proposicao;
  * Created by igormlgomes on 25/05/16.
  */
 public class ProposicaoDes  implements JsonDeserializer<Object> {
+
     @Override
     public Object deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement proposicao = json.getAsJsonObject();
-        if (proposicao.getAsJsonObject().get("proposicao")!= null){
-            proposicao = proposicao.getAsJsonObject().get("proposicao");
+        if (proposicao.getAsJsonObject().get("")!= null){
+            proposicao = proposicao.getAsJsonObject().get("");
         }
+        Log.i("DEBUG",proposicao.toString());
         return (new Gson().fromJson( proposicao , Proposicao.class));
     }
 }
